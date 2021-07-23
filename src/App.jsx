@@ -1,6 +1,6 @@
-import { Home } from "@pages/Home.component";
+import { Home } from "@pages/Home/Home.component";
 import React from "react";
-import "./App.css";
+import "./App.scss";
 
 function App() {
   return <Home />;

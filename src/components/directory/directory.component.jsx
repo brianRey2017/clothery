@@ -1,12 +1,13 @@
-import { MenuItem } from "@components/menu-item/menu-item.component";
 import React, { Component } from "react";
-import { sections } from "./sections";
+
+import MenuItem from "@components/menu-item/menu-item.component";
+import { SECTIONS } from "@data/sections";
 import "./directory.styles.scss";
 
 export default class Directory extends Component {
   constructor() {
     super();
-    this.state = { sections };
+    this.state = { sections: SECTIONS };
   }
   render() {
     return (

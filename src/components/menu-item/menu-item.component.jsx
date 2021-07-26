@@ -3,11 +3,11 @@ import PropTypes from "prop-types"; // ES6
 import "./menu-item.styles.scss";
 import { useHistory } from "react-router-dom";
 
-export const MenuItem = ({ id, imageUrl, title, size }) => {
+const MenuItem = ({ id, imageUrl, title, size }) => {
   const history = useHistory();
 
   const handleClick = () => {
-    history.push(`/categories/${id}`);
+    history.push(`/collections/${id}`);
   };
 
   return (
@@ -32,3 +32,5 @@ MenuItem.propTypes = {
   size: PropTypes.oneOf(["small", "large"]),
   title: PropTypes.string.isRequired,
 };
+
+export default MenuItem;

@@ -25,7 +25,7 @@ const FormInput = ({ handleChange, label, ...otherProps }) => {
 };
 
 FormInput.propTypes = {
-  handleChange: PropTypes.func.isRequireds,
+  handleChange: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
 };
 

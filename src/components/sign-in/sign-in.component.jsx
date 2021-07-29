@@ -1,7 +1,8 @@
 import CustomButton from "@components/custom-button/custom-button.component";
 import FormInput from "@components/form-input/form-input.component";
-import { useInput } from "@hooks/useInput";
 import React from "react";
+import { useInput } from "@hooks/useInput";
+import { signInWithGoogle } from "@lib/firebase";
 import "./sign-in.styles.scss";
 
 const SignIn = () => {
@@ -34,7 +35,12 @@ const SignIn = () => {
           type="password"
           value={password}
         />
-        <CustomButton type="submit">Sign In</CustomButton>
+        <div className="buttons">
+          <CustomButton type="submit">Sign In</CustomButton>
+          <CustomButton onClick={signInWithGoogle} variant="primary">
+            Sign in with Google
+          </CustomButton>
+        </div>
       </form>
     </div>
   );

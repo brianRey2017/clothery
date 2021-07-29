@@ -13,8 +13,6 @@ const firebaseConfig = {
   storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
 };
 
-console.log(firebaseConfig);
-// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
@@ -25,3 +23,7 @@ const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({
   prompt: "select_account",
 });
+
+export const signInWithGoogle = () => auth.signInWithPopup(provider);
+
+export default firebase;

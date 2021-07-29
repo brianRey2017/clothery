@@ -1,11 +1,12 @@
 import CustomButton from "@components/custom-button/custom-button.component";
 import FormInput from "@components/form-input/form-input.component";
-import React, { useState } from "react";
+import { useInput } from "@hooks/useInput";
+import React from "react";
 import "./sign-in.styles.scss";
 
 const SignIn = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useInput("");
+  const [password, setPassword] = useInput("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -18,7 +19,7 @@ const SignIn = () => {
 
       <form onSubmit={handleSubmit}>
         <FormInput
-          handleChange={() => setEmail()}
+          handleChange={setEmail}
           label="email"
           name="email"
           required
@@ -26,7 +27,7 @@ const SignIn = () => {
           value={email}
         />
         <FormInput
-          handleChange={() => setPassword()}
+          handleChange={setPassword}
           label="password"
           name="password"
           required

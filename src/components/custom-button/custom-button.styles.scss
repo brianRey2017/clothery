@@ -1,3 +1,5 @@
+$primary-blue: #357ae8;
+
 .custom-button {
   min-width: 165px;
   width: auto;
@@ -9,7 +11,7 @@
   background-color: black;
   color: white;
   text-transform: uppercase;
-  font-family: 'Open Sans Condensed';
+  font-family: "Open Sans Condensed";
   font-weight: bolder;
   border: none;
   cursor: pointer;
@@ -18,5 +20,14 @@
     background-color: white;
     color: black;
     border: 1px solid black;
+  }
+
+  &.primary {
+    background-color: $primary-blue;
+    color: white;
+    &:hover {
+      background-color: $primary-blue;
+      border: none;
+    }
   }
 }

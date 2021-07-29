@@ -6,6 +6,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import "./index.css";
+import "./lib/firebase";
 
 ReactDOM.render(
   <BrowserRouter>

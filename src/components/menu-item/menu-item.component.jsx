@@ -27,7 +27,7 @@ const MenuItem = ({ id, imageUrl, title, size }) => {
 };
 
 MenuItem.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   imageUrl: PropTypes.string.isRequired,
   size: PropTypes.oneOf(["small", "large"]),
   title: PropTypes.string.isRequired,

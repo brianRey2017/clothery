@@ -1,12 +1,13 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 
+import { auth } from "@lib/firebase";
 import Header from "@components/header/header.component";
 import { Home } from "@pages/Home/Home.component";
-import { SignInAndSignUp } from "@pages/SignInAndSignUp/SignInAndSignUp.component";
 import { Shop } from "@pages/Shop/Shop.component";
+import { SignInAndSignUp } from "@pages/SignInAndSignUp/SignInAndSignUp.component";
+import UsersService from "@services/users";
 import "./App.scss";
-import { auth } from "@lib/firebase";
 
 class App extends React.Component {
   constructor() {
@@ -17,11 +18,19 @@ class App extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
-      this.setState({
-        currentUser: user,
-      });
+  async componentDidMount() {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
+      const userRef = await UsersService.createUser(user);
+      // if (user) {
+      //   const { displayName, email, uid: userId } = user;
+      //   this.setState({
+      //     currentUser: {
+      //       displayName,
+      //       email,
+      //       userId,
+      //     },
+      //   });
+      // }
     });
   }
 

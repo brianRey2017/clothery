@@ -1,7 +1,9 @@
 import { firestore } from "@lib/firebase";
 
-export class UsersService {
+export class CartService {
   async getCartItems(userId) {
-    return firestore.collection(`users/${userId}/cartItems`);
+    const carItems = await firestore.collection(`users/${userId}/cartItems`);
+
+    return carItems || [];
   }
 }

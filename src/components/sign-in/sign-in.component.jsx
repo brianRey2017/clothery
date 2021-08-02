@@ -1,16 +1,26 @@
+/* eslint-disable react/prop-types */
+import React from "react";
+import { withRouter } from "react-router-dom";
+
+import { auth, signInWithGoogle } from "@lib/firebase";
 import CustomButton from "@components/custom-button/custom-button.component";
 import FormInput from "@components/form-input/form-input.component";
-import React from "react";
 import { useInput } from "@hooks/useInput";
-import { signInWithGoogle } from "@lib/firebase";
 import "./sign-in.styles.scss";
 
-const SignIn = () => {
+const SignIn = ({ history }) => {
   const [email, setEmail] = useInput("");
   const [password, setPassword] = useInput("");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      history.push("/");
+    } catch (error) {
+      console.error("Error during sign in", error);
+    }
   };
 
   return (
@@ -46,4 +56,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default withRouter(SignIn);

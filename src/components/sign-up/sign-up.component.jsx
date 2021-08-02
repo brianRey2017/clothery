@@ -1,40 +1,86 @@
-import { useInput } from "@hooks/useInput";
+import CustomButton from "@components/custom-button/custom-button.component";
+import FormInput from "@components/form-input/form-input.component";
 import React from "react";
+import { withRouter } from "react-router-dom";
+
+import { auth, signInWithGoogle } from "@lib/firebase";
+import { useInput } from "@hooks/useInput";
+import UsersService from "@services/users";
 import "./sign-up.styles.scss";
 
-const SignUp = () => {
-  const [email, setEmail] = useInput("");
-  const [password, setPassword] = useInput("");
+// eslint-disable-next-line react/prop-types
+const SignUp = ({ history }) => {
+  const [email, handleEmailChange] = useInput("");
+  const [password, handlePasswordChange] = useInput("");
+  const [displayName, handleDisplayNameChange] = useInput("");
+  const [passwordConfirm, handlePasswordConfirmChange] = useInput("");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (password !== passwordConfirm) {
+      alert("Passwords don't match");
+      return;
+    }
+
+    try {
+      const { user } = auth.createUserWithEmailAndPassword(email, password);
+
+      await UsersService.createUser(user, { displayName });
+      // eslint-disable-next-line react/prop-types
+      history.push("/");
+    } catch (error) {
+      console.error("Error during user creation", error);
+    }
   };
 
   return (
     <div className="sign-up">
-      <h2>SIGN UP</h2>
-      <span>Sign in with your email and password</span>
+      <h1>I do not have an account</h1>
+      <span>Sign up with your email and password</span>
 
       <form onSubmit={handleSubmit}>
-        <input
+        <FormInput
+          handleChange={handleDisplayNameChange}
+          label="display name"
+          name="displayName"
+          required
+          type="text"
+          value={displayName}
+        />
+        <FormInput
+          handleChange={handleEmailChange}
+          label="email"
           name="email"
-          onChange={setEmail}
           required
           type="email"
           value={email}
         />
-        <label htmlFor="email"></label>
-        <input
+        <FormInput
+          handleChange={handlePasswordChange}
+          label="password"
           name="password"
-          onChange={setPassword}
           required
           type="password"
           value={password}
         />
-        <label htmlFor="password"></label>
+        <FormInput
+          handleChange={handlePasswordConfirmChange}
+          label="password confirm"
+          name="password-confirm"
+          required
+          type="password"
+          value={passwordConfirm}
+        />
+        <div className="buttons">
+          <CustomButton type="submit">Sign Up</CustomButton>
+          <CustomButton onClick={signInWithGoogle} variant="primary">
+            Sign up with Google
+          </CustomButton>
+        </div>
       </form>
     </div>
   );
 };
 
-export default SignUp;
+export default withRouter(SignUp);

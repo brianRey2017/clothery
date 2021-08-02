@@ -19,18 +19,27 @@ class App extends React.Component {
   }
 
   async componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
-      const userRef = await UsersService.createUser(user);
-      // if (user) {
-      //   const { displayName, email, uid: userId } = user;
-      //   this.setState({
-      //     currentUser: {
-      //       displayName,
-      //       email,
-      //       userId,
-      //     },
-      //   });
-      // }
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const userRef = await UsersService.createUser(userAuth);
+
+        // You can listen to a document with the onSnapshot() method.
+        // An initial call using the callback you provide creates a document snapshot
+        // immediately with the current contents of the single document.
+        // Then, each time the contents change,
+        // another call updates the document snapshot.
+        userRef.onSnapshot((snapShot) => {
+          // THIS IS ASYNC
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data(),
+            },
+          });
+        });
+      }
+      // IF IS NULL (ON SIGN OUT) SET IT IN STATE
+      this.setState({ currentUser: userAuth });
     });
   }
 

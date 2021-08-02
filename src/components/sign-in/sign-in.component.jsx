@@ -47,7 +47,11 @@ const SignIn = ({ history }) => {
         />
         <div className="buttons">
           <CustomButton type="submit">Sign In</CustomButton>
-          <CustomButton onClick={signInWithGoogle} variant="primary">
+          <CustomButton
+            onClick={signInWithGoogle}
+            variant="primary"
+            type="button"
+          >
             Sign in with Google
           </CustomButton>
         </div>

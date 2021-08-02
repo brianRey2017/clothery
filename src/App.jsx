@@ -1,24 +1,19 @@
+import { connect } from "react-redux";
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 
 import { auth } from "@lib/firebase";
-import Header from "@components/header/header.component";
+import Header from "@components/common/header/header.component";
 import { Home } from "@pages/Home/Home.component";
+import { setCurrentUser } from "@redux/user/user.actions";
 import { Shop } from "@pages/Shop/Shop.component";
 import { SignInAndSignUp } from "@pages/SignInAndSignUp/SignInAndSignUp.component";
 import UsersService from "@services/users";
 import "./App.scss";
 
 class App extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      currentUser: null,
-    };
-  }
-
   async componentDidMount() {
+    const { setCurrentUser } = this.props;
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await UsersService.createUser(userAuth);
@@ -30,7 +25,7 @@ class App extends React.Component {
         // another call updates the document snapshot.
         userRef.onSnapshot((snapShot) => {
           // THIS IS ASYNC
-          this.setState({
+          setCurrentUser({
             currentUser: {
               id: snapShot.id,
               ...snapShot.data(),
@@ -39,7 +34,7 @@ class App extends React.Component {
         });
       }
       // IF IS NULL (ON SIGN OUT) SET IT IN STATE
-      this.setState({ currentUser: userAuth });
+      setCurrentUser(userAuth);
     });
   }
 
@@ -50,7 +45,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header currentUser={this.state.currentUser} />
+        <Header />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/shop" component={Shop} />
@@ -61,4 +56,8 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+});
+
+export default connect(null, mapDispatchToProps)(App);

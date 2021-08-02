@@ -1,10 +1,12 @@
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import React from "react";
 
-import { ReactComponent as Logo } from "@images/crown.svg";
-import "./header.styles.scss";
 import { auth } from "@lib/firebase";
+import { ReactComponent as Logo } from "@images/crown.svg";
+
+import "./header.styles.scss";
 
 const Header = ({ currentUser }) => {
   return (
@@ -37,4 +39,8 @@ Header.propTypes = {
   currentUser: PropTypes.oneOfType([PropTypes.object, PropTypes.oneOf([null])]),
 };
 
-export default Header;
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
+});
+
+export default connect(mapStateToProps)(Header);

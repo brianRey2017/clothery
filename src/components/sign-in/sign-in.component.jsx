@@ -3,8 +3,8 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 
 import { auth, signInWithGoogle } from "@lib/firebase";
-import CustomButton from "@components/custom-button/custom-button.component";
-import FormInput from "@components/form-input/form-input.component";
+import CustomButton from "@components/common/custom-button/custom-button.component";
+import FormInput from "@components/common/form-input/form-input.component";
 import { useInput } from "@hooks/useInput";
 import "./sign-in.styles.scss";
 

@@ -9,6 +9,7 @@
       "@images/*": ["./assets/images/*"],
       "@lib/*": ["./lib/*"],
       "@pages/*": ["./pages/*"],
+      "@redux/*": ["./redux/*"],
       "@services/*": ["./services/*"]
     },
     "target": "esnext"

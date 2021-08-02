@@ -1,17 +1,22 @@
 import { BrowserRouter } from "react-router-dom";
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+import store from "@redux/store";
+
 import "./index.css";
-import "./lib/firebase";
+import "@lib/firebase";
 
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
   document.getElementById("root")
 );
 

@@ -8,6 +8,7 @@ module.exports = {
       "@images": path.resolve(__dirname, "src/assets/images/"),
       "@lib": path.resolve(__dirname, "src/lib/"),
       "@pages": path.resolve(__dirname, "src/pages/"),
+      "@redux": path.resolve(__dirname, "src/redux/"),
       "@services": path.resolve(__dirname, "src/services/"),
     },
   },

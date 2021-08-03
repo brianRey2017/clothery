@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 import React from "react";
 
 import { auth } from "@lib/firebase";
-import { ReactComponent as Logo } from "@images/crown.svg";
+import CartIcon from "@components/cart-icon/cart-icon.component";
+import { ReactComponent as LogoIcon } from "@images/crown.svg";
 
 import "./header.styles.scss";
 
@@ -12,7 +13,7 @@ const Header = ({ currentUser }) => {
   return (
     <div className="header">
       <Link to="/">
-        <Logo className="logo" />
+        <LogoIcon className="logo" />
       </Link>
       <div className="options">
         <Link className="option" to="/shop">
@@ -30,6 +31,7 @@ const Header = ({ currentUser }) => {
             SIGN IN
           </Link>
         )}
+        <CartIcon />
       </div>
     </div>
   );

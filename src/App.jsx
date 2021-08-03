@@ -3,7 +3,7 @@ import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 
 import { auth } from "@lib/firebase";
-import Header from "@components/common/header/header.component";
+import Header from "@components/header/header.component";
 import { Home } from "@pages/Home/Home.component";
 import { setCurrentUser } from "@redux/user/user.actions";
 import { Shop } from "@pages/Shop/Shop.component";

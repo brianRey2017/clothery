@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import React from "react";
 
 import { auth } from "@lib/firebase";
+import CartDropdown from "@components/cart-dropdown/cart-dropdown.component";
 import CartIcon from "@components/cart-icon/cart-icon.component";
 import { ReactComponent as LogoIcon } from "@images/crown.svg";
 
@@ -33,6 +34,7 @@ const Header = ({ currentUser }) => {
         )}
         <CartIcon />
       </div>
+      <CartDropdown />
     </div>
   );
 };

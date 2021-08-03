@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-import { ReactComponent as ShoppingIcon } from "@images/shoping-bag.svg";
+import { ReactComponent as ShoppingIcon } from "@images/shopping-bag.svg";
 
 const CartIcon = (props) => {
   return (

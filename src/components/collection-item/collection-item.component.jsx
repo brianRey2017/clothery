@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./collection-item.styles.scss";
+import CustomButton from "@components/common/custom-button/custom-button.component";
 
 const CollectionItem = ({ id, imageUrl, name, price }) => {
   return (
@@ -15,6 +16,7 @@ const CollectionItem = ({ id, imageUrl, name, price }) => {
         <span className="name">{name}</span>
         <span className="price">{price}</span>
       </div>
+      <CustomButton>ADD TO CART</CustomButton>
     </div>
   );
 };

@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import React from "react";
 
 import { ReactComponent as ShoppingIcon } from "@images/shopping-bag.svg";
-import { toggleCartHidden } from "@redux/cart/cart.actions";
+import { toggleCartShow } from "@redux/cart/cart.actions";
 import "./cart-icon.styles.scss";
 
-const CartIcon = ({ toggleCartHidden }) => {
+const CartIcon = ({ toggleCartShow }) => {
   return (
-    <div className="cart-icon" onClick={toggleCartHidden}>
+    <div className="cart-icon" onClick={toggleCartShow}>
       <ShoppingIcon className="shopping-icon" />
       <span className="item-count"></span>
     </div>
@@ -20,7 +20,7 @@ CartIcon.propTypes = {};
 const mapStateToProps = (state) => ({});
 
 const mapDispatchToProps = (dispatch) => ({
-  toggleCartHidden: () => dispatch(toggleCartHidden()),
+  toggleCartShow: () => dispatch(toggleCartShow()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);

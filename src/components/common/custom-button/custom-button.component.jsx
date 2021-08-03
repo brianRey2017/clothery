@@ -2,10 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./custom-button.styles.scss";
 
-const CustomButton = ({ children, variant, ...otherProps }) => {
+const CustomButton = ({ children, variant, inverted, ...otherProps }) => {
   return (
     <button
-      className={`${variant ? variant : ""} custom-button`}
+      className={`${variant ? variant : ""}
+      ${inverted ? "inverted" : ""} custom-button`}
       {...otherProps}
     >
       {children}
@@ -15,6 +16,7 @@ const CustomButton = ({ children, variant, ...otherProps }) => {
 
 CustomButton.propTypes = {
   children: PropTypes.node,
+  inverted: PropTypes.bool,
   variant: PropTypes.oneOf(["primary"]),
 };
 

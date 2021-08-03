@@ -1,9 +1,13 @@
-const INITIAL_STATE = {};
+import { CART_ACTION_TYPES } from "./cart.types";
 
-export default (state = INITIAL_STATE, { type, payload }) => {
+const INITIAL_STATE = {
+  hidden: true,
+};
+
+export default (state = INITIAL_STATE, { type }) => {
   switch (type) {
-    case CART_ACTION_TYPES:
-      return { ...state };
+    case CART_ACTION_TYPES.TOGGLE_CART_HIDDEN:
+      return { ...state, hidden: !state.hidden };
     default:
       return state;
   }

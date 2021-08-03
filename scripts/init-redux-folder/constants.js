@@ -1,10 +1,12 @@
 exports.generateConstants = (folderName) => {
   const FOLDER_PATH = `src/redux/${folderName}`;
   const TYPES_ENUM = `${folderName.toUpperCase()}_ACTION_TYPES`;
-
+  const IMPORT_TYPES_ENUM = `import { ${TYPES_ENUM} } from "./${folderName}.types";`;
   const TYPES_FILE_CONTENT = `export const ${TYPES_ENUM} = {};`;
 
-  const REDUCERS_FILE_CONTENT = `const INITIAL_STATE = {};
+  const REDUCERS_FILE_CONTENT = `${IMPORT_TYPES_ENUM}
+  
+const INITIAL_STATE = {};
 
 export default (state = INITIAL_STATE, { type, payload }) => {
   switch (type) {
@@ -15,7 +17,7 @@ export default (state = INITIAL_STATE, { type, payload }) => {
   }
 };`;
 
-  const ACTIONS_FILE_CONTENT = `import { ${TYPES_ENUM} } from "./${folderName}.types";`;
+  const ACTIONS_FILE_CONTENT = `${IMPORT_TYPES_ENUM}`;
 
   const FILES = [
     [`${FOLDER_PATH}/${folderName}.reducers.js`, REDUCERS_FILE_CONTENT],

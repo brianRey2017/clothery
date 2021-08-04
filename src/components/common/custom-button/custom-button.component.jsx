@@ -17,7 +17,7 @@ const CustomButton = ({ children, variant, inverted, ...otherProps }) => {
 CustomButton.propTypes = {
   children: PropTypes.node,
   inverted: PropTypes.bool,
-  variant: PropTypes.oneOf(["primary"]),
+  variant: PropTypes.oneOf(["danger", "primary"]),
 };
 
 export default CustomButton;

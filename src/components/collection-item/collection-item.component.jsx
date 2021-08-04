@@ -1,9 +1,14 @@
+import { connect } from "react-redux";
 import React from "react";
 import PropTypes from "prop-types";
-import "./collection-item.styles.scss";
-import CustomButton from "@components/common/custom-button/custom-button.component";
 
-const CollectionItem = ({ id, imageUrl, name, price }) => {
+import { addItem } from "@redux/cart/cart.actions";
+import CustomButton from "@components/common/custom-button/custom-button.component";
+import "./collection-item.styles.scss";
+
+const CollectionItem = ({ item, addItem }) => {
+  const { id, imageUrl, name, price } = item;
+
   return (
     <div className="collection-item">
       <div
@@ -16,16 +21,20 @@ const CollectionItem = ({ id, imageUrl, name, price }) => {
         <span className="name">{name}</span>
         <span className="price">{price}</span>
       </div>
-      <CustomButton>ADD TO CART</CustomButton>
+      <CustomButton inverted onClick={() => addItem(item)}>
+        ADD TO CART
+      </CustomButton>
     </div>
   );
 };
 
 CollectionItem.propTypes = {
-  id: PropTypes.number.isRequired,
-  imageUrl: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
+  item: PropTypes.object.isRequired,
+  addItem: PropTypes.func,
 };
 
-export default CollectionItem;
+const mapDispatchToProps = (dispatch) => ({
+  addItem: (item) => dispatch(addItem(item)),
+});
+
+export default connect(null, mapDispatchToProps)(CollectionItem);

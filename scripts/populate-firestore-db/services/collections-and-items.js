@@ -1,6 +1,8 @@
 const { firestore } = require("../firebase");
 const faker = require("faker");
+
 const { COLLECTIONS_AND_ITEMS } = require("../data/collections-and-items");
+const { spinner } = require("../utils");
 
 const COLLECTIONS_REF = firestore.collection("collections");
 const COLLECTION_ITEMS_REF = firestore.collection("collection-items");
@@ -32,7 +34,7 @@ exports.createCollectionAndItems = async () => {
       
       await batch.commit();
       spinner.stop();
-      console.log("COLLECTIONS AND ITEMS CREATED");
+      console.log("\nCOLLECTIONS AND ITEMS CREATED");
   } catch (error) {
     console.error("Error during Collection And Items creation:", error);
   }

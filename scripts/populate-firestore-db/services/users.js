@@ -22,7 +22,7 @@ exports.createUsers = async () => {
     for (const USER of GENERATE_USERS_DATA(1)) {
       await createUser(USER);
     }
-    console.log("ALL USERS CREATED");
+    console.log("\nALL USERS CREATED");
   } catch (error) {
     console.error("Error while creating users", error);
   }

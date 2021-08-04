@@ -2,16 +2,25 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import React from "react";
 
+import CartItemPreview from "@components/cart/cart-item-preview/cart-item-preview.component";
 import { clearCart } from "@redux/cart/cart.actions";
 import CustomButton from "@components/common/custom-button/custom-button.component";
 import "./cart-dropdown.styles.scss";
 
-const CartDropdown = ({ cartItems, clearCart, isCartEmpty }) => {
+const CartDropdown = ({ cartItems, clearCart }) => {
   return (
     <div className="cart-dropdown">
-      <div className="cart-items"></div>
+      <div className="cart-items">
+        {cartItems.map((item) => (
+          <CartItemPreview
+            key={item.id}
+            className="cart-item-preview"
+            item={item}
+          />
+        ))}
+      </div>
       <div className="buttons">
-        {!isCartEmpty && (
+        {cartItems.length > 0 && (
           <CustomButton variant="danger" onClick={() => clearCart()}>
             CLEAR CART
           </CustomButton>
@@ -24,17 +33,15 @@ const CartDropdown = ({ cartItems, clearCart, isCartEmpty }) => {
 
 CartDropdown.propTypes = {
   clearCart: PropTypes.func,
-  cartItems: PropTypes.arrayOf([PropTypes.object]),
-  isCartEmpty: PropTypes.bool,
+  cartItems: PropTypes.array,
 };
 
 const mapStateToProps = ({ cart }) => ({
-  cartItems: cart.items,
-  isCartEmpty: cart.items.length === 0,
+  cartItems: Object.values(cart.items),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addItem: (item) => dispatch(clearCart(item)),
+  clearCart: (item) => dispatch(clearCart(item)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartDropdown);

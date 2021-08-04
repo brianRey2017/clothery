@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import React from "react";
 
 import { auth } from "@lib/firebase";
-import CartDropdown from "@components/cart-dropdown/cart-dropdown.component";
-import CartIcon from "@components/cart-icon/cart-icon.component";
+import CartDropdown from "@components/cart/cart-dropdown/cart-dropdown.component";
+import CartIcon from "@components/cart/cart-icon/cart-icon.component";
 import { ReactComponent as LogoIcon } from "@images/crown.svg";
 
 import "./header.styles.scss";

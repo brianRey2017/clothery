@@ -55,6 +55,6 @@ $danger-red: #dc3545;
   }
 
   &.inverted {
-    @include color-button($bg: $danger-red, $font: white, $inverted: true);
+    @include color-button($bg: white, $font: black, $inverted: true);
   }
 }

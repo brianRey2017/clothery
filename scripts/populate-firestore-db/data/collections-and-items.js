@@ -1,7 +1,9 @@
-exports.COLLECTIONS_AND_ITEMS = [
+const faker = require("faker");
+
+exports.GENERATE_COLLECTIONS_AND_ITEMS = () => [
   {
     featured: true,
-    id: "d4437077-cd81-417a-b899-e6899f85c221",
+    id: faker.datatype.uuid(),
     imagePreviewURL: "https://i.ibb.co/cvpntL1/hats.png",
     items: [
       {
@@ -35,19 +37,19 @@ exports.COLLECTIONS_AND_ITEMS = [
         price: 14,
       },
       {
-        id: 7,
+        id: faker.datatype.uuid(),
         imageUrl: "https://i.ibb.co/bLB646Z/red-beanie.png",
         name: "Red Beanie",
         price: 18,
       },
       {
-        id: 8,
+        id: faker.datatype.uuid(),
         imageUrl: "https://i.ibb.co/1f2nWMM/wolf-cap.png",
         name: "Wolf Cap",
         price: 14,
       },
       {
-        id: 9,
+        id: faker.datatype.uuid(),
         imageUrl: "https://i.ibb.co/X2VJP2W/blue-snapback.png",
         name: "Blue Snapback",
         price: 16,
@@ -58,7 +60,7 @@ exports.COLLECTIONS_AND_ITEMS = [
   },
   {
     featured: true,
-    id: "72d76816-c612-4a1d-a045-f56841045d6a",
+    id: faker.datatype.uuid(),
     imagePreviewURL: "https://i.ibb.co/0jqHpnp/sneakers.png",
     items: [
       {
@@ -92,13 +94,13 @@ exports.COLLECTIONS_AND_ITEMS = [
         price: 160,
       },
       {
-        id: 7,
+        id: faker.datatype.uuid(),
         imageUrl: "https://i.ibb.co/w4k6Ws9/nike-funky.png",
         name: "Air Jordan Limited",
         price: 190,
       },
       {
-        id: 8,
+        id: faker.datatype.uuid(),
         imageUrl: "https://i.ibb.co/Mhh6wBg/timberlands.png",
         name: "Timberlands",
         price: 200,
@@ -109,7 +111,7 @@ exports.COLLECTIONS_AND_ITEMS = [
   },
   {
     featured: true,
-    id: "f197ebd8-4690-4359-8b39-17b74ddc0137",
+    id: faker.datatype.uuid(),
     imagePreviewURL: "https://i.ibb.co/px2tCc3/jackets.png",
     items: [
       {
@@ -143,7 +145,7 @@ exports.COLLECTIONS_AND_ITEMS = [
   },
   {
     featured: true,
-    id: "5d3008ff-7f47-4e61-a3a8-7cdec0221cb5",
+    id: faker.datatype.uuid(),
     imagePreviewURL: "https://i.ibb.co/GCCdy8t/womens.png",
     items: [
       {
@@ -177,7 +179,7 @@ exports.COLLECTIONS_AND_ITEMS = [
         price: 135,
       },
       {
-        id: 7,
+        id: faker.datatype.uuid(),
         imageUrl: "https://i.ibb.co/qBcrsJg/white-vest.png",
         name: "White Blouse",
         price: 20,
@@ -189,7 +191,7 @@ exports.COLLECTIONS_AND_ITEMS = [
   },
   {
     featured: true,
-    id: "a02b78fb-fbf5-492f-8c74-1e35a22333e0",
+    id: faker.datatype.uuid(),
     imagePreviewURL: "https://i.ibb.co/R70vBrQ/men.png",
     items: [
       {

@@ -1,0 +1,28 @@
+.cart-item-preview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5px;
+
+  .item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 80%;
+
+    .item-image {
+      width: 30px;
+      height: 30px;
+      border-radius: 5px;
+    }
+    .item-info {
+      margin-left: 10px;
+    }
+  }
+
+  .remove-item-icon {
+    width: 17px;
+    height: 17px;
+    cursor: pointer;
+  }
+}

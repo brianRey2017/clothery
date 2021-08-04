@@ -17,7 +17,7 @@ const CollectionPreview = ({ items, title }) => {
 };
 
 CollectionPreview.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   items: PropTypes.array,
   title: PropTypes.string.isRequired,
 };

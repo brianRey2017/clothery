@@ -6,7 +6,8 @@ import { Provider } from "react-redux";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
-import store from "@redux/store";
+import { persistor, store } from "@redux/store";
+import { PersistGate } from "redux-persist/integration/react";
 
 import "./index.css";
 import "@lib/firebase";
@@ -14,7 +15,9 @@ import "@lib/firebase";
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <PersistGate persistor={persistor}>
+        <App />
+      </PersistGate>
     </BrowserRouter>
   </Provider>,
   document.getElementById("root")

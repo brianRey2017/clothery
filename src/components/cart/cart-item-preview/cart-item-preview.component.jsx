@@ -8,20 +8,20 @@ import { removeItem } from "@redux/cart/cart.actions";
 import "./cart-item-preview.styles.scss";
 
 const CartItemPreview = ({ item, removeItemFromCart }) => {
-  const { id, imageUrl, name, quantity } = item;
+  const { id, imageUrl, name, price, quantity } = item;
   return (
     <div className="cart-item-preview">
       <div className="item">
         <img className="item-image" src={imageUrl} />
         <span className="item-info">
           {name}
-          {quantity > 1 ? ` X ${quantity}U` : ""}
+          <br />
+          {quantity > 1 ? ` X ${quantity}U` : ""}: ${price * quantity}
         </span>
       </div>
       <CloseIcon
         className="remove-item-icon"
         onClick={() => {
-          console.log(id);
           removeItemFromCart(id);
         }}
       />

@@ -9,6 +9,7 @@ module.exports = {
       "@lib": path.resolve(__dirname, "src/lib/"),
       "@pages": path.resolve(__dirname, "src/pages/"),
       "@redux": path.resolve(__dirname, "src/redux/"),
+      "@schemas": path.resolve(__dirname, "src/schemas/"),
       "@services": path.resolve(__dirname, "src/services/"),
     },
   },

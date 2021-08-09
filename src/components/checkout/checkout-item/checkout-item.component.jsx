@@ -2,22 +2,47 @@ import { connect } from "react-redux";
 import React from "react";
 import PropTypes from "prop-types";
 
+import {
+  addItem,
+  reduceItemQuantity,
+  removeItem,
+} from "@redux/cart/cart.actions";
 import { CartItemSchema } from "@schemas/cart-item.schema";
-import { removeItemFromCart } from "@redux/cart/cart.utils";
 
 import "./checkout-item.styles.scss";
-import { addItem } from "@redux/cart/cart.actions";
 
-const CheckoutItem = ({ item: { id, imageUrl, name, price, quantity } }) => {
+const CheckoutItem = ({
+  addItem,
+  item,
+  reduceItemQuantityInCart,
+  removeItem,
+}) => {
+  const { id: itemId, imageUrl, name, price, quantity } = item;
+  const canReduceQuantity = quantity > 1;
   return (
     <div className="checkout-item">
       <div className="image-container">
         <img src={imageUrl} alt="item" />
       </div>
       <span className="name">{name}</span>
-      <span className="quantity">{quantity}</span>
+      <span className="quantity">
+        <div
+          className={`arrow ${!canReduceQuantity ? "disabled" : ""}`}
+          onClick={() => {
+            quantity > 1 && reduceItemQuantityInCart(itemId);
+          }}
+        >
+          &#10094;
+        </div>
+        <span className="value">{quantity}</span>
+        <div className="arrow" onClick={() => addItem(item)}>
+          &#10095;
+        </div>
+      </span>
       <span className="price">{price}</span>
-      <div className="remove-button">&#10005;</div>
+      <div className="remove-button" onClick={() => removeItem(itemId)}>
+        &#10005;
+      </div>
     </div>
   );
 };
@@ -28,7 +53,8 @@ CheckoutItem.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   addItem: (item) => dispatch(addItem(item)),
-  removeItem: (itemId) => dispatch(removeItemFromCart(itemId)),
+  removeItem: (itemId) => dispatch(removeItem(itemId)),
+  reduceItemQuantityInCart: (itemId) => dispatch(reduceItemQuantity(itemId)),
 });
 
 export default connect(null, mapDispatchToProps)(CheckoutItem);

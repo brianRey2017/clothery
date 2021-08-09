@@ -11,16 +11,25 @@ import {
 } from "@redux/cart/cart.selectors";
 
 import "./Checkout.styles.scss";
+import { EmptyCheckout } from "@components/checkout/empty-checkout/empty-checkout.component";
+import CustomButton from "@components/common/custom-button/custom-button.component";
 
 const Checkout = ({ cartItems, totalPrice }) => (
   <div className="checkout-page">
-    <CheckoutHeader />
-    {cartItems.map(({ id, ...cartItemProps }) => (
-      <CheckoutItem key={id} item={{ ...cartItemProps, id }} />
-    ))}
-    <div className="total">
-      <span>TOTAL: ${totalPrice}</span>
-    </div>
+    {cartItems.length ? (
+      <div className="items-container">
+        <CheckoutHeader />
+        {cartItems.map(({ id, ...cartItemProps }) => (
+          <CheckoutItem key={id} item={{ ...cartItemProps, id }} />
+        ))}
+        <div className="summary">
+          <span>TOTAL: ${totalPrice}</span>
+          <CustomButton variant="primary">PAY ${totalPrice}</CustomButton>
+        </div>
+      </div>
+    ) : (
+      <EmptyCheckout />
+    )}
   </div>
 );
 

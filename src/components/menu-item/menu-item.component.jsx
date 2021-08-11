@@ -3,11 +3,11 @@ import PropTypes from "prop-types"; // ES6
 import "./menu-item.styles.scss";
 import { useHistory } from "react-router-dom";
 
-const MenuItem = ({ id, imageUrl, title, size }) => {
+const MenuItem = ({ imageUrl,linkUrl, title, size }) => {
   const history = useHistory();
 
   const handleClick = () => {
-    history.push(`/collections/${id}`);
+    history.push(linkUrl);
   };
 
   return (

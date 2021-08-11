@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   height: 350px;
-  width: 22%;
+  width: 22vw;
   position: relative;
 
   .image {
@@ -32,6 +32,9 @@
   &:hover {
     .image {
       opacity: 0.6;
+      border-radius: 30px 20px 40px 20px;
+      transform: scale(1.03);
+      transition: border-radius 300ms;
     }
 
     .custom-button {

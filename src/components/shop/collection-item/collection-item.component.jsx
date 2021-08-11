@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { addItem } from "@redux/cart/cart.actions";
-import { CollectionItemSchema } from "@schemas/collection-item.schema";
+import { CollectionItemSchema } from "./collection-item.schema";
 import CustomButton from "@components/common/custom-button/custom-button.component";
 import "./collection-item.styles.scss";
 

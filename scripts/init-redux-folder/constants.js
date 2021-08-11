@@ -1,3 +1,5 @@
+const { toTitleCase } = require("./utils");
+
 exports.generateConstants = (folderName) => {
   const FOLDER_PATH = `src/redux/${folderName}`;
   const TYPES_ENUM = `${folderName.toUpperCase()}_ACTION_TYPES`;
@@ -18,10 +20,15 @@ export default (state = INITIAL_STATE, { type, payload }) => {
 };`;
 
   const ACTIONS_FILE_CONTENT = `${IMPORT_TYPES_ENUM}`;
+  const SELECTORS_FILE_CONTENT = `import { createSelector } from "reselect";
+
+  const select${toTitleCase(folderName)} = (state) => state.${folderName};
+  `
 
   const FILES = [
-    [`${FOLDER_PATH}/${folderName}.reducers.js`, REDUCERS_FILE_CONTENT],
     [`${FOLDER_PATH}/${folderName}.actions.js`, ACTIONS_FILE_CONTENT],
+    [`${FOLDER_PATH}/${folderName}.reducers.js`, REDUCERS_FILE_CONTENT],
+    [`${FOLDER_PATH}/${folderName}.selectors.js`, SELECTORS_FILE_CONTENT],
     [`${FOLDER_PATH}/${folderName}.types.js`, TYPES_FILE_CONTENT],
   ];
 

@@ -1,1 +1,0 @@
-export const COLLECTION_ITEM_ACTION_TYPES = {};

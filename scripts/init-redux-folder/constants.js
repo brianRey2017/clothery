@@ -22,7 +22,7 @@ export default (state = INITIAL_STATE, { type, payload }) => {
   const ACTIONS_FILE_CONTENT = `${IMPORT_TYPES_ENUM}`;
   const SELECTORS_FILE_CONTENT = `import { createSelector } from "reselect";
 
-  const select${toTitleCase(folderName)} = (state) => state.${folderName};
+const select${toTitleCase(folderName)} = (state) => state.${folderName};
   `
 
   const FILES = [

@@ -1,6 +1,7 @@
 import { DIRECTORY_ACTION_TYPES } from "./directory.types";
-  
-const INITIAL_STATE = {};
+import { SECTIONS } from "@data/sections";
+
+const INITIAL_STATE = { sections: SECTIONS };
 
 export default (state = INITIAL_STATE, { type, payload }) => {
   switch (type) {

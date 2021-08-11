@@ -16,7 +16,7 @@ const CartItemPreview = ({ item, removeItemFromCart }) => {
         <span className="item-info">
           {name}
           <br />
-          {quantity > 1 ? ` X ${quantity}U` : ""}: ${price * quantity}
+          {quantity > 1 ? ` X ${quantity}U:` : ""} ${price * quantity}
         </span>
       </div>
       <CloseIcon

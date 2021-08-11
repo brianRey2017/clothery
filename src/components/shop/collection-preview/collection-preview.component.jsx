@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./collection-preview.styles.scss";
-import CollectionItem from "@components/collection/collection-item/collection-item.component";
+import CollectionItem from "@components/shop/collection-item/collection-item.component";
 
 const CollectionPreview = ({ items, title }) => {
   return (

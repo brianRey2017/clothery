@@ -7,7 +7,7 @@ import {
   reduceItemQuantity,
   removeItem,
 } from "@redux/cart/cart.actions";
-import { CartItemSchema } from "@schemas/cart-item.schema";
+import { CartItemSchema } from "@components/cart/cart-item-preview/cart-item.schema";
 
 import "./checkout-item.styles.scss";
 

@@ -11,7 +11,7 @@ import UsersService from "@services/users";
 
 import Checkout from "@pages/Checkout/Checkout.component";
 import { Home } from "@pages/Home/Home.component";
-import { Shop } from "@pages/Shop/Shop.component";
+import Shop from "@pages/Shop/Shop.component";
 import { SignInAndSignUp } from "@pages/SignInAndSignUp/SignInAndSignUp.component";
 
 import "./App.scss";

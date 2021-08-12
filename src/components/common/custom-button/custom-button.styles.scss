@@ -57,4 +57,20 @@ $danger-red: #dc3545;
   &.inverted {
     @include color-button($bg: white, $font: black, $inverted: true);
   }
+
+  &.rounded {
+    border-radius: 10px;
+  }
+
+  .content-with-icon {
+    display: flex;
+    align-items: center;
+    font-size: 18px !important;
+    .custom-button-icon {
+      height: 18px;
+      width: 18px;
+      fill: white;
+      margin-right: 10px;
+    }
+  }
 }

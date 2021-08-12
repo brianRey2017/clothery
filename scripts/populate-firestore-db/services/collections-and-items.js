@@ -12,15 +12,15 @@ exports.createCollectionAndItems = async () => {
     console.log("CREATING COLLECTIONS AND ITEMS");
     spinner.start();
     const batch = firestore.batch();
-    
+
     COLLECTIONS_AND_ITEMS.forEach(
       ({ id: COLLECTION_ID, items, ...collectionData }) => {
         const COLLECTION_REF = COLLECTIONS_REF.doc(COLLECTION_ID);
-        
+
         batch.set(COLLECTION_REF, {
           ...collectionData,
         });
-        
+
         items.forEach((item) => {
           const ITEM_ID = faker.datatype.uuid();
           const COLLECTION_ITEM_REF = COLLECTION_ITEMS_REF.doc(ITEM_ID);
@@ -30,11 +30,11 @@ exports.createCollectionAndItems = async () => {
           });
         });
       }
-      );
-      
-      await batch.commit();
-      spinner.stop();
-      console.log("\nCOLLECTIONS AND ITEMS CREATED");
+    );
+
+    await batch.commit();
+    spinner.stop();
+    console.log("\nCOLLECTIONS AND ITEMS CREATED");
   } catch (error) {
     console.error("Error during Collection And Items creation:", error);
   }

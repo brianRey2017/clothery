@@ -16,7 +16,8 @@ export const EmptyCheckout = () => {
       <div className="empty-checkout-message">
         <h2 className="message">Your Cart Is Currently Empty!</h2>
         <span className="description">
-          Before proceed to checkout you must add some products to your shopping cart!
+          Before proceed to checkout you must add some products to your shopping
+          cart!
         </span>
       </div>
       <CustomButton onClick={() => history.push("/shop")}>

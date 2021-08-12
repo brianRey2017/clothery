@@ -9,5 +9,5 @@ const getCollectionItems = async () => COLLECTION_REF.get();
 
 export default {
   getCollectionItem,
-  getCollectionItems
+  getCollectionItems,
 };

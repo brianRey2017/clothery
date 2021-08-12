@@ -34,9 +34,8 @@ const Checkout = ({ cartItems, totalPrice }) => {
           <div className="test-warning">
             <b>Please use the following test credit card for payments</b>
             <br />
-            Number: {TEST_CREDIT_CARD_NUMBER} -
-            Exp: {TEST_CREDIT_CARD_EXPIRING_DATE} -
-            CVV: {TEST_CREDIT_CARD_CVV}
+            Number: {TEST_CREDIT_CARD_NUMBER} - Exp:{" "}
+            {TEST_CREDIT_CARD_EXPIRING_DATE} - CVV: {TEST_CREDIT_CARD_CVV}
           </div>
           <div className="summary">
             <span>TOTAL: ${totalPrice}</span>

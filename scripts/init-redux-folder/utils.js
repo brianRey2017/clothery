@@ -24,12 +24,12 @@ const createFiles = async (files) =>
     })
   );
 
-const toTitleCase = (word) => (word.charAt(0).toUpperCase() + word.slice(1));
+const toTitleCase = (word) => word.charAt(0).toUpperCase() + word.slice(1);
 
 module.exports = {
   createFile,
   createFiles,
   createFolder,
   folderExists,
-  toTitleCase
+  toTitleCase,
 };

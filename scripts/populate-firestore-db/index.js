@@ -7,7 +7,7 @@ const main = async () => {
 main()
   .then(() => {
     console.log(`DATA SUCCESSFULLY CREATED.`);
-    process.exit()
+    process.exit();
   })
   .catch((err) => {
     console.error(err);

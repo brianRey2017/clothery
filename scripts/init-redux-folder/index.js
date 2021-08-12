@@ -18,7 +18,9 @@ const main = async () => {
 
 main()
   .then(() => {
-    console.log(`FILES SUCCESSFULLY CREATED AT: ${FOLDER_PATH}.\nREMEMBER TO ADD THE REDUCERS TO THE ROOT REDUCER!`);
+    console.log(
+      `FILES SUCCESSFULLY CREATED AT: ${FOLDER_PATH}.\nREMEMBER TO ADD THE REDUCERS TO THE ROOT REDUCER!`
+    );
   })
   .catch((err) => {
     console.error(err);

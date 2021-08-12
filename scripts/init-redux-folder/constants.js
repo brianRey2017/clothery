@@ -23,7 +23,7 @@ export default (state = INITIAL_STATE, { type, payload }) => {
   const SELECTORS_FILE_CONTENT = `import { createSelector } from "reselect";
 
 const select${toTitleCase(folderName)} = (state) => state.${folderName};
-  `
+  `;
 
   const FILES = [
     [`${FOLDER_PATH}/${folderName}.actions.js`, ACTIONS_FILE_CONTENT],

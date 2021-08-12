@@ -43,6 +43,8 @@
     "build": "craco build",
     "create-redux-structure": "node scripts/init-redux-folder/index.js",
     "eject": "craco eject",
+    "format": "prettier-eslint --write \"{,!(node_modules)/**/}*.{js,jsx}\"",
+    "lint": "eslint .",
     "populate-db": "node -r dotenv/config scripts/populate-firestore-db/index.js dotenv_config_path=.env",
     "start": "craco start",
     "test": "craco test"
@@ -70,11 +72,26 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
+    "husky": "^7.0.1",
     "node-sass": "^6.0.0",
     "prettier": "^2.3.2",
     "sass-loader": "^11.1.1"
   },
   "engines": {
     "node": "14.x"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.+(js|jsx)": [
+      "eslint --fix",
+      "prettier --write --ignore-unknown"
+    ],
+    "*.+(json|css|md)": [
+      "prettier --write"
+    ]
   }
 }

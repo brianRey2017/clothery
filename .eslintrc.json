@@ -26,6 +26,6 @@
         "endOfLine": "auto"
       }
     ],
-    "react/prop-types": "warning"
+    "react/prop-types": 1
   }
 }

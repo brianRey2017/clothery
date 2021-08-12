@@ -11,11 +11,14 @@ const COLLECTIONS_ID_MAP = {
 
 const selectShop = (state) => state.shop;
 
+export const selectShopCollectionsForPreview = createSelector([selectShop], (shop) => Object.values(shop.collections));
+
 export const selectShopCollections = createSelector([selectShop], (shop) => shop.collections);
 
 export const selectShopCollection = memoize((collectionURLParam) =>
-  createSelector([selectShopCollections], (collections) =>
-    collections.find(
-      (collection) => collection.id === COLLECTIONS_ID_MAP[collectionURLParam]
-    )
+  createSelector([selectShopCollections], (collections) => {
+    console.log(collectionURLParam);
+    console.log(collections);
+    return collections[collectionURLParam]
+  }
   ));

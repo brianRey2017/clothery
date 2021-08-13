@@ -5,9 +5,11 @@ import { persistStore } from "redux-persist";
 
 import rootReducer from "./root-reducer";
 
-console;
+const MIDDLEWARES = [process.env.NODE_ENV !== "production" && logger].filter(
+  Boolean
+);
 
-const MIDDLEWARES = [logger];
+console.log(MIDDLEWARES);
 
 export const store = createStore(
   rootReducer,

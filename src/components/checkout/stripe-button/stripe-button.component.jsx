@@ -10,11 +10,7 @@ const STRIPE_PUBLISHABLE_API_KEY =
 export const StripeButton = ({ price }) => {
   const priceToCents = (price) => price * 100;
 
-  const onToken = () => {
-    console.log("====================================");
-    console.log("PAYMENT SUCCESSFUL!");
-    console.log("====================================");
-  };
+  const onToken = () => {};
   return (
     <StripeCheckout
       amount={priceToCents(price)}

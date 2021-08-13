@@ -15,10 +15,8 @@ export default (state = INITIAL_STATE, { type, payload }) => {
     case CART_ACTION_TYPES.TOGGLE_CART_SHOW:
       return { ...state, show: !state.show };
     case CART_ACTION_TYPES.ADD_ITEM:
-      console.log("+1");
       return { ...state, items: addItemToCart(state.items, payload) };
     case CART_ACTION_TYPES.REDUCE_ITEM_QUANTITY:
-      console.log("-1");
       return {
         ...state,
         items: reduceItemQuantityInCart(state.items, payload),

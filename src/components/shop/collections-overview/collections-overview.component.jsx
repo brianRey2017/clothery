@@ -21,11 +21,4 @@ const mapStateToProps = createStructuredSelector({
   collections: selectShopCollectionsForPreview,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  // property: (param) => dispatch(action(param)),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CollectionsOverview);
+export default connect(mapStateToProps)(CollectionsOverview);

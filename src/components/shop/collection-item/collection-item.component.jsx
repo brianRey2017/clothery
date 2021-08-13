@@ -8,7 +8,7 @@ import CustomButton from "@components/common/custom-button/custom-button.compone
 import "./collection-item.styles.scss";
 
 const CollectionItem = ({ item, addItem }) => {
-  const { id, imageUrl, name, price } = item;
+  const { imageUrl, name, price } = item;
 
   return (
     <div className="collection-item">

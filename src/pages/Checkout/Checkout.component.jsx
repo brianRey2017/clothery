@@ -4,16 +4,15 @@ import React from "react";
 
 import { CheckoutHeader } from "@components/checkout/checkout-header/checkout-header.component";
 import CheckoutItem from "@components/checkout/checkout-item/checkout-item.component";
+import { EmptyCheckout } from "@components/checkout/empty-checkout/empty-checkout.component";
 import { removeItem } from "@redux/cart/cart.actions";
 import {
   selectCartItems,
   selectCartTotalPrice,
 } from "@redux/cart/cart.selectors";
+import { StripeButton } from "@components/checkout/stripe-button/stripe-button.component";
 
 import "./Checkout.styles.scss";
-import { EmptyCheckout } from "@components/checkout/empty-checkout/empty-checkout.component";
-import CustomButton from "@components/common/custom-button/custom-button.component";
-import { StripeButton } from "@components/checkout/stripe-button/stripe-button.component";
 
 const Checkout = ({ cartItems, totalPrice }) => {
   const TEST_CREDIT_CARD_NUMBER =

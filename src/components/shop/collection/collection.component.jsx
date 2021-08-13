@@ -36,8 +36,4 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  // items: se => dispatch(action(param)),
-});
-
 export default withRouter(connect(mapStateToProps)(Collection));

@@ -3,7 +3,7 @@ import { SHOP_DATA } from "@data/shop";
 
 const INITIAL_STATE = { collections: SHOP_DATA };
 
-export default (state = INITIAL_STATE, { type, payload }) => {
+export default (state = INITIAL_STATE, { type }) => {
   switch (type) {
     case SHOP_ACTION_TYPES:
       return { ...state };

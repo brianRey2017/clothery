@@ -9,8 +9,6 @@ const MIDDLEWARES = [process.env.NODE_ENV !== "production" && logger].filter(
   Boolean
 );
 
-console.log(MIDDLEWARES);
-
 export const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(...MIDDLEWARES))

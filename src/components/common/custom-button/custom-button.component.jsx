@@ -10,6 +10,7 @@ const CustomButton = ({
   variant,
   ...otherProps
 }) => {
+  console.log(children);
   return (
     <button
       className={`${variant ? variant : ""}
@@ -22,7 +23,7 @@ const CustomButton = ({
           {children}
         </span>
       ) : (
-        { children }
+        children
       )}
     </button>
   );

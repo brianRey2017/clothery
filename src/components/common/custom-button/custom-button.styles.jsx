@@ -1,9 +1,5 @@
+import { fontSize } from "@theme/Theme";
 import styled from "styled-components";
-
-const PRIMARY_BLUE = " #357ae8";
-const DANGER_RED = "#dc3545";
-const BLACK = "#000000";
-const WHITE = "#ffffff";
 
 const COLOR_VARIANTS = {
   DANGER: "danger",
@@ -11,64 +7,64 @@ const COLOR_VARIANTS = {
   PRIMARY: "primary",
 };
 
-const getFontColorByVariant = (variant) => {
+const getFontColorByVariant = (variant, { colors }) => {
   switch (variant) {
     case COLOR_VARIANTS.INVERTED:
-      return BLACK;
+      return colors.dark;
     case COLOR_VARIANTS.DANGER:
     case COLOR_VARIANTS.PRIMARY:
     default:
-      return WHITE;
+      return colors.main;
   }
 };
 
-const getHoverFontColorByVariant = (variant) => {
+const getHoverFontColorByVariant = (variant, { colors }) => {
   switch (variant) {
     case COLOR_VARIANTS.INVERTED:
     case COLOR_VARIANTS.DANGER:
     case COLOR_VARIANTS.PRIMARY:
-      return WHITE;
+      return colors.main;
     default:
-      return BLACK;
+      return colors.dark;
   }
 };
 
-const getBackgroundColorByVariant = (variant) => {
+const getBackgroundColorByVariant = (variant, { colors }) => {
   switch (variant) {
     case COLOR_VARIANTS.DANGER:
-      return DANGER_RED;
+      return colors.danger;
 
     case COLOR_VARIANTS.INVERTED:
-      return WHITE;
+      return colors.main;
 
     case COLOR_VARIANTS.PRIMARY:
-      return PRIMARY_BLUE;
+      return colors.primary;
 
     default:
-      return BLACK;
+      return colors.dark;
   }
 };
 
-const getHoverBackgroundColorByVariant = (variant) => {
+const getHoverBackgroundColorByVariant = (variant, { colors }) => {
   switch (variant) {
     case COLOR_VARIANTS.DANGER:
-      return DANGER_RED;
+      return colors.danger;
 
     case COLOR_VARIANTS.INVERTED:
-      return BLACK;
+      return colors.dark;
 
     case COLOR_VARIANTS.PRIMARY:
-      return PRIMARY_BLUE;
+      return colors.primary;
 
     default:
-      return WHITE;
+      return colors.main;
   }
 };
 
-const getBorderByVariant = (variant) => {
+const getBorderByVariant = (variant, { colors }) => {
   switch (variant) {
     case COLOR_VARIANTS.INVERTED:
-      return `1px solid ${BLACK}`;
+      return `${fontSize(1)} solid ${colors.dark}`;
 
     case COLOR_VARIANTS.DANGER:
     case COLOR_VARIANTS.PRIMARY:
@@ -77,56 +73,58 @@ const getBorderByVariant = (variant) => {
   }
 };
 
-const getHoverBorderByVariant = (variant) => {
+const getHoverBorderByVariant = (variant, { colors }) => {
   switch (variant) {
     case COLOR_VARIANTS.DANGER:
     case COLOR_VARIANTS.PRIMARY:
     case COLOR_VARIANTS.INVERTED:
       return "none";
     default:
-      return `1px solid ${BLACK}`;
+      return `${fontSize(1)} solid ${colors.dark}`;
   }
 };
 
 export const StyledButton = styled.button`
-  background-color: ${({ variant }) => getBackgroundColorByVariant(variant)};
-  border-radius: ${({ isRounded }) => (isRounded ? "10px" : null)};
-  border: ${({ variant }) => getBorderByVariant(variant)};
-  color: ${({ variant }) => getFontColorByVariant(variant)};
+  background-color: ${({ variant, theme }) =>
+    getBackgroundColorByVariant(variant, theme)};
+  border-radius: ${({ isRounded }) => (isRounded ? "10" : null)};
+  border: ${({ variant, theme }) => getBorderByVariant(variant, theme)};
+  color: ${({ variant, theme }) => getFontColorByVariant(variant, theme)};
   cursor: pointer;
   display: flex;
   font-family: "Open Sans Condensed";
-  font-size: 15px;
+  font-size: ${({ theme: { fontSizes } }) => fontSizes.medium};
   font-weight: bolder;
-  height: 50px;
+  height: ${fontSize(50)};
   justify-content: center;
-  letter-spacing: 0.5px;
-  line-height: 50px;
-  min-width: 165px;
-  padding: 0 35px 0 35px;
+  letter-spacing: ${fontSize(0.5)};
+  line-height: ${fontSize(50)};
+  min-width: ${fontSize(165)};
+  padding: 0 ${fontSize(35)} 0 ${fontSize(35)};
   text-transform: uppercase;
   width: auto;
 
   &:hover {
-    background-color: ${({ variant }) =>
-      getHoverBackgroundColorByVariant(variant)};
-    color: ${({ variant }) => getHoverFontColorByVariant(variant)};
-    border: ${({ variant }) => getHoverBorderByVariant(variant)};
+    background-color: ${({ variant, theme }) =>
+      getHoverBackgroundColorByVariant(variant, theme)};
+    color: ${({ variant, theme }) =>
+      getHoverFontColorByVariant(variant, theme)};
+    border: ${({ variant, theme }) => getHoverBorderByVariant(variant, theme)};
   }
 `;
 
 export const StyledTextWithIconContainer = styled.span`
   display: flex;
   align-items: center;
-  font-size: 18px !important;
+  font-size: ${({ theme: { fontSizes } }) => fontSizes.medium};
 `;
 
 export const IconWrapper = styled.div`
   svg {
-    width: 18px;
-    height: 18px;
+    width: ${fontSize(18)};
+    height: ${fontSize(18)};
     fill: white;
-    margin-right: 10px;
+    margin-right: ${fontSize(10)};
     margin-top: 1.1rem;
   }
 `;

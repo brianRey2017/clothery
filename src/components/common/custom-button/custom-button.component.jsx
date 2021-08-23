@@ -1,40 +1,33 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./custom-button.styles.scss";
+import {
+  StyledButton,
+  IconWrapper,
+  StyledTextWithIconContainer,
+} from "./custom-button.styles";
 
-const CustomButton = ({
-  children,
-  Icon,
-  inverted,
-  rounded,
-  variant,
-  ...otherProps
-}) => {
-  console.log(children);
+const CustomButton = ({ children, Icon, rounded, variant, ...otherProps }) => {
   return (
-    <button
-      className={`${variant ? variant : ""}
-      ${inverted ? "inverted" : ""} ${rounded ? "rounded" : ""} custom-button`}
-      {...otherProps}
-    >
+    <StyledButton variant={variant} isRounded={rounded} {...otherProps}>
       {Icon ? (
-        <span className="content-with-icon">
-          <Icon className="custom-button-icon" />
+        <StyledTextWithIconContainer className="content-with-icon">
+          <IconWrapper>
+            <Icon />
+          </IconWrapper>
           {children}
-        </span>
+        </StyledTextWithIconContainer>
       ) : (
         children
       )}
-    </button>
+    </StyledButton>
   );
 };
 
 CustomButton.propTypes = {
   children: PropTypes.node,
   Icon: PropTypes.elementType,
-  inverted: PropTypes.bool,
   rounded: PropTypes.bool,
-  variant: PropTypes.oneOf(["danger", "primary"]),
+  variant: PropTypes.oneOf(["danger", "primary", "inverted"]),
 };
 
 export default CustomButton;

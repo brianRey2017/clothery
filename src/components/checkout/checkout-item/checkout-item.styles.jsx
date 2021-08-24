@@ -1,13 +1,13 @@
-import { fontSize } from "@theme/Theme";
+import { pxToRem } from "@theme/Theme";
 import styled from "styled-components";
 
 export const CheckoutItemContainer = styled.div`
   width: 100%;
   display: flex;
-  min-height: ${fontSize(100)};
-  border-bottom: ${fontSize(1)} solid darkgrey;
-  padding: ${fontSize(15)} 0;
-  font-size: ${fontSize(20)};
+  min-height: ${pxToRem(100)};
+  border-bottom: ${pxToRem(1)} solid darkgrey;
+  padding: ${pxToRem(15)} 0;
+  font-size: ${pxToRem(20)};
   align-items: center;
 `;
 
@@ -37,7 +37,7 @@ export const ArrowController = styled.span`
 `;
 
 export const CurrentItemQuantity = styled.span`
-  margin: 0 ${fontSize(10)};
+  margin: 0 ${pxToRem(10)};
 `;
 
 export const RemoveButtonContainer = styled.div`

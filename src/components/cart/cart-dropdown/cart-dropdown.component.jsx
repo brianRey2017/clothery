@@ -49,6 +49,7 @@ const CartDropdown = ({ cartItems, clearCart, toggleCartVisibility }) => {
 
 CartDropdown.propTypes = {
   clearCart: PropTypes.func,
+  toggleCartVisibility: PropTypes.func,
   cartItems: PropTypes.array,
 };
 

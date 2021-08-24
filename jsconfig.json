@@ -10,8 +10,9 @@
       "@lib/*": ["./lib/*"],
       "@pages/*": ["./pages/*"],
       "@redux/*": ["./redux/*"],
+      "@schemas/*": ["./schemas/*"],
       "@services/*": ["./services/*"],
-      "@schemas/*": ["./schemas/*"]
+      "@theme/*": ["./theme/*"]
     },
     "target": "esnext"
   },

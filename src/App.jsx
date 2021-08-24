@@ -15,6 +15,7 @@ import Shop from "@pages/Shop/Shop.component";
 import { SignInAndSignUp } from "@pages/SignInAndSignUp/SignInAndSignUp.component";
 
 import "./App.scss";
+import Theme from "@theme/Theme";
 
 class App extends React.Component {
   async componentDidMount() {
@@ -49,20 +50,26 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <Header />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/checkout" component={Checkout} />
-          <Route path="/shop" component={Shop} />
-          <Route
-            path="/signin"
-            render={() =>
-              this.props.currentUser ? <Redirect to="/" /> : <SignInAndSignUp />
-            }
-          />
-        </Switch>
-      </div>
+      <Theme>
+        <div>
+          <Header />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/checkout" component={Checkout} />
+            <Route path="/shop" component={Shop} />
+            <Route
+              path="/signin"
+              render={() =>
+                this.props.currentUser ? (
+                  <Redirect to="/" />
+                ) : (
+                  <SignInAndSignUp />
+                )
+              }
+            />
+          </Switch>
+        </div>
+      </Theme>
     );
   }
 }

@@ -2,9 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import CollectionItem from "@components/shop/collection-item/collection-item.component";
-import { CollectionSchema } from "../collection/collection.schema";
-import "./collection-preview.styles.scss";
+import { CollectionSchema } from "@components/shop/collection/collection.schema";
 import { Link } from "react-router-dom";
+import {
+  CollectionPreviewContainer,
+  CollectionPreviewItems,
+  CollectionTitle,
+} from "./collection-preview.styles";
 
 const CollectionPreview = ({
   items,
@@ -13,16 +17,16 @@ const CollectionPreview = ({
   maxItemsPreview = 4,
 }) => {
   return (
-    <div className="collection-preview">
-      <h1 className="title">
+    <CollectionPreviewContainer>
+      <CollectionTitle>
         <Link to={`shop/${routeName}`}>{title.toUpperCase()}</Link>
-      </h1>
-      <div className="preview">
+      </CollectionTitle>
+      <CollectionPreviewItems>
         {items.slice(0, maxItemsPreview).map((item) => (
           <CollectionItem key={item.id} id={item.id} item={item} />
         ))}
-      </div>
-    </div>
+      </CollectionPreviewItems>
+    </CollectionPreviewContainer>
   );
 };
 

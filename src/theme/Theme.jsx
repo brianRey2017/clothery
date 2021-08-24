@@ -2,7 +2,7 @@ import React from "react";
 import { ThemeProvider } from "styled-components";
 import { RED, GRAY, BLUE, WHITE, BLACK } from "./colors";
 
-const FONT_SIZE_BASE = 18;
+const FONT_SIZE_BASE = 16;
 export const pxToRem = (sizeInPx) => `${sizeInPx / FONT_SIZE_BASE}rem`;
 
 const theme = {

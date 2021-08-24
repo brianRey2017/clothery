@@ -1,0 +1,48 @@
+@mixin hideScrollBar($axisY: false, $axisX: false) {
+  overflow-y: auto;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  @if $axisX == true {
+    overflow-x: hidden !important;
+  } @else {
+    overflow-x: auto !important;
+  }
+
+  @if $axisY == true {
+    overflow-y: hidden !important;
+  } @else {
+    overflow-y: auto !important;
+  }
+}
+
+.checkout-page {
+  @include hideScrollBar($axisY: true);
+  width: 55%;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px auto;
+
+  .items-container {
+    width: 100%;
+    .summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 30px;
+      margin-left: auto;
+      font-size: 36px;
+    }
+    .test-warning {
+      text-align: center;
+      margin: 40px auto;
+      color: red;
+      font-size: 24px;
+    }
+  }
+}

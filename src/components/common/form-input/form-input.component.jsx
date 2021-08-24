@@ -1,30 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { FormContainer, StyledInput, StyledLabel } from "./form-input.styles";
+import "./form-input.styles.scss";
 
 const FormInput = ({ handleChange, label, ...otherProps }) => {
-  const { value: inputValue } = otherProps;
   return (
-    <FormContainer>
-      <StyledInput
+    <div className="group">
+      <input
         type="text"
         className="form-input"
         onChange={handleChange}
         {...otherProps}
       />
-      {label && (
-        <StyledLabel className={`${inputValue.length ? "shrink" : ""}`}>
+      {label ? (
+        <label
+          className={`${
+            otherProps.value.length ? "shrink" : ""
+          } form-input-label`}
+        >
           {label}
-        </StyledLabel>
-      )}
-    </FormContainer>
+        </label>
+      ) : null}
+    </div>
   );
 };
 
 FormInput.propTypes = {
   handleChange: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
-  value: PropTypes.string,
 };
 
 export default FormInput;

@@ -5,36 +5,24 @@ import { ReactComponent as CartIcon } from "@images/shopping-bag.svg";
 
 import "./empty-checkout.styles.scss";
 import { useHistory } from "react-router-dom";
-import {
-  ButtonContainer,
-  CartIconContainer,
-  EmptyCheckoutContainer,
-  EmptyCheckoutMessageContainer,
-  EmptyCheckoutMessageDescription,
-  EmptyCheckoutMessageTitle,
-} from "./empty-checkout.styles";
 
 export const EmptyCheckout = () => {
   const history = useHistory();
   return (
-    <EmptyCheckoutContainer>
-      <CartIconContainer>
+    <div className="empty-checkout">
+      <div className="icon">
         <CartIcon />
-      </CartIconContainer>
-      <EmptyCheckoutMessageContainer>
-        <EmptyCheckoutMessageTitle>
-          Your Cart Is Currently Empty!
-        </EmptyCheckoutMessageTitle>
-        <EmptyCheckoutMessageDescription>
+      </div>
+      <div className="empty-checkout-message">
+        <h2 className="message">Your Cart Is Currently Empty!</h2>
+        <span className="description">
           Before proceed to checkout you must add some products to your shopping
           cart!
-        </EmptyCheckoutMessageDescription>
-      </EmptyCheckoutMessageContainer>
-      <ButtonContainer>
-        <CustomButton onClick={() => history.push("/shop")}>
-          GO TO SHOP
-        </CustomButton>
-      </ButtonContainer>
-    </EmptyCheckoutContainer>
+        </span>
+      </div>
+      <CustomButton onClick={() => history.push("/shop")}>
+        GO TO SHOP
+      </CustomButton>
+    </div>
   );
 };

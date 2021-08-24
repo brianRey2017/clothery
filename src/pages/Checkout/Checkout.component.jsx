@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import React from "react";
-import PropTypes from "prop-types";
 
 import { CheckoutHeader } from "@components/checkout/checkout-header/checkout-header.component";
 import CheckoutItem from "@components/checkout/checkout-item/checkout-item.component";
@@ -11,43 +10,42 @@ import {
   selectCartItems,
   selectCartTotalPrice,
 } from "@redux/cart/cart.selectors";
+import { StripeButton } from "@components/checkout/stripe-button/stripe-button.component";
 
-import { CartItemSchema } from "@components/cart/cart-item-preview/cart-item.schema";
-import {
-  CheckoutPageContainer,
-  ItemsContainer,
-  SummaryContainer,
-  TestWarningContainer,
-} from "./Checkout.styles";
-import CheckoutSummary from "@components/checkout/summary/checkout-summary.component";
-import { StripeTestWarningMessage } from "@components/checkout/test-warning-message/test-warning-message.component";
+import "./Checkout.styles.scss";
 
 const Checkout = ({ cartItems, totalPrice }) => {
+  const TEST_CREDIT_CARD_NUMBER =
+    process.env["REACT_APP_STRIPE_TEST_CREDIT_CARD_NUMBER"];
+  const TEST_CREDIT_CARD_EXPIRING_DATE = `01/${(new Date().getFullYear() + 1)
+    .toString()
+    .substr(-2)}`;
+  const TEST_CREDIT_CARD_CVV =
+    process.env["REACT_APP_STRIPE_TEST_CREDIT_CARD_CVV"];
   return (
-    <CheckoutPageContainer>
+    <div className="checkout-page">
       {cartItems.length ? (
-        <ItemsContainer>
+        <div className="items-container">
           <CheckoutHeader />
           {cartItems.map(({ id, ...cartItemProps }) => (
             <CheckoutItem key={id} item={{ ...cartItemProps, id }} />
           ))}
-          <TestWarningContainer>
-            <StripeTestWarningMessage />
-          </TestWarningContainer>
-          <SummaryContainer>
-            <CheckoutSummary totalPrice={totalPrice} />
-          </SummaryContainer>
-        </ItemsContainer>
+          <div className="test-warning">
+            <b>Please use the following test credit card for payments</b>
+            <br />
+            Number: {TEST_CREDIT_CARD_NUMBER} - Exp:{" "}
+            {TEST_CREDIT_CARD_EXPIRING_DATE} - CVV: {TEST_CREDIT_CARD_CVV}
+          </div>
+          <div className="summary">
+            <span>TOTAL: ${totalPrice}</span>
+            <StripeButton price={totalPrice} />
+          </div>
+        </div>
       ) : (
         <EmptyCheckout />
       )}
-    </CheckoutPageContainer>
+    </div>
   );
-};
-
-Checkout.propTypes = {
-  totalPrice: PropTypes.number,
-  cartItems: PropTypes.arrayOf(PropTypes.shape(CartItemSchema)),
 };
 
 const mapStateToProps = createStructuredSelector({

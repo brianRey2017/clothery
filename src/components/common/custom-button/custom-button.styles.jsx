@@ -93,7 +93,7 @@ export const StyledButton = styled.button`
   cursor: pointer;
   display: flex;
   font-family: "Open Sans Condensed";
-  font-size: ${({ theme: { pxToRems } }) => pxToRems.medium};
+  font-size: ${({ theme: { fontSizes } }) => fontSizes.medium};
   font-weight: bolder;
   height: ${pxToRem(50)};
   justify-content: center;
@@ -116,7 +116,7 @@ export const StyledButton = styled.button`
 export const StyledTextWithIconContainer = styled.span`
   display: flex;
   align-items: center;
-  font-size: ${({ theme: { pxToRems } }) => pxToRems.medium};
+  font-size: ${({ theme: { fontSizes } }) => fontSizes.medium};
 `;
 
 export const IconWrapper = styled.div`

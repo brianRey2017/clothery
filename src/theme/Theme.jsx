@@ -14,7 +14,7 @@ const theme = {
     secondary: GRAY,
   },
   fonts: ["Open Sans Condensed", "sans-serif", "Roboto"],
-  pxToRems: {
+  fontSizes: {
     small: pxToRem(12),
     medium: pxToRem(18),
     large: pxToRem(24),

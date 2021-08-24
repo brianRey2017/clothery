@@ -10,7 +10,7 @@ export const StyledInput = styled.input`
   background: none;
   background-color: ${({ theme: { colors } }) => colors.main};
   color: ${({ theme: { colors } }) => colors.secondary};
-  font-size: ${({ theme: { pxToRems } }) => pxToRems.medium};
+  font-size: ${({ theme: { fontSizes } }) => fontSizes.medium};
   padding: ${pxToRem(10)} ${pxToRem(10)} ${pxToRem(10)} ${pxToRem(10)};
   display: block;
   width: 100%;
@@ -26,14 +26,14 @@ export const StyledInput = styled.input`
 
   &:focus ~ label {
     top: ${pxToRem(-14)};
-    font-size: ${({ theme: { pxToRems } }) => pxToRems.small};
+    font-size: ${({ theme: { fontSizes } }) => fontSizes.small};
     color: ${({ theme: { colors } }) => colors.dark};
   }
 `;
 
 export const StyledLabel = styled.label`
   color: ${({ theme: { colors } }) => colors.secondary};
-  font-size: ${({ theme: { pxToRems } }) => pxToRems.medium};
+  font-size: ${({ theme: { fontSizes } }) => fontSizes.medium};
   font-weight: normal;
   position: absolute;
   pointer-events: none;
@@ -43,7 +43,7 @@ export const StyledLabel = styled.label`
 
   &.shrink {
     top: ${pxToRem(-14)};
-    font-size: ${({ theme: { pxToRems } }) => pxToRems.small};
+    font-size: ${({ theme: { fontSizes } }) => fontSizes.small};
     color: ${({ theme: { colors } }) => colors.dark};
   }
 `;

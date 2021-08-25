@@ -1,6 +1,4 @@
-import { firestore } from "@lib/firebase";
-
-const USERS_COLLECTION_REF = firestore.collection("users");
+import { FirestoreCollection } from "./lib/firestore-collection";
 
 const getUserDTO = ({ displayName, email }, additionalData) => ({
   createdAt: new Date(),
@@ -9,35 +7,38 @@ const getUserDTO = ({ displayName, email }, additionalData) => ({
   ...additionalData,
 });
 
-const getUser = async (userId) => USERS_COLLECTION_REF.doc(userId).get();
+class UsersService extends FirestoreCollection {
+  constructor() {
+    super("users");
+  }
 
-const getUsers = async () => USERS_COLLECTION_REF.get();
+  async getUser(userId) {
+    return this.getDocument(userId);
+  }
+  async getUsers() {
+    return this.getDocuments();
+  }
 
-const createUser = async (userAuth, additionalData) => {
-  // ON SIGN OUT FIREBASE RETURNS NULL
-  if (!userAuth) return;
+  async createUser(userAuth, additionalData) {
+    if (!userAuth) return;
 
-  const { uid: userId } = userAuth;
-  const userRef = USERS_COLLECTION_REF.doc(userId);
+    const { uid: userId } = userAuth;
+    const userRef = this.getDocumentRef(userId);
 
-  if (!(await userExists(userId))) {
-    try {
-      const payload = getUserDTO(userAuth, additionalData);
-      await userRef.set(payload);
-      return userRef;
-    } catch (error) {
-      console.error("Error while creating user", error);
+    if (!(await this.userExists(userId))) {
+      try {
+        const payload = getUserDTO(userAuth, additionalData);
+        await this.createDocumentWithId(userId, payload);
+        return userRef;
+      } catch (error) {
+        console.error("Error while creating user", error);
+      }
     }
   }
-};
 
-const userExists = async (userId) => {
-  return getUser(userId).exists;
-};
+  async userExists(userId) {
+    return this.documentExists(userId);
+  }
+}
 
-export default {
-  createUser,
-  getUser,
-  getUsers,
-  userExists,
-};
+export default new UsersService();

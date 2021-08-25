@@ -7,43 +7,43 @@ import { createStructuredSelector } from "reselect";
 import { auth } from "@lib/firebase";
 import CartDropdown from "@components/cart/cart-dropdown/cart-dropdown.component";
 import CartIcon from "@components/cart/cart-icon/cart-icon.component";
+import { HeaderContainer, Option, OptionsContainer } from "./header.styles";
 import { ReactComponent as LogoIcon } from "@images/crown.svg";
 import { selectCartVisibility } from "@redux/cart/cart.selectors";
 import { selectCurrentUser } from "@redux/user/user.selectors";
 
-import "./header.styles.scss";
-
 const Header = ({ showCart, currentUser }) => {
   return (
-    <div className="header">
+    <HeaderContainer>
       <Link to="/">
-        <LogoIcon className="logo" />
+        <LogoIcon />
       </Link>
-      <div className="options">
-        <Link className="option" to="/shop">
+      <OptionsContainer>
+        <Option className="option" to="/shop">
           SHOP
-        </Link>
-        <Link className="option" to="">
+        </Option>
+        <Option className="option" to="">
           CONTACT
-        </Link>
+        </Option>
         {currentUser ? (
           <div className="option" onClick={() => auth.signOut()}>
             SIGN OUT
           </div>
         ) : (
-          <Link className="option" to="/signin">
+          <Option className="option" to="/signin">
             SIGN IN
-          </Link>
+          </Option>
         )}
         <CartIcon />
-      </div>
+      </OptionsContainer>
       {showCart && <CartDropdown />}
-    </div>
+    </HeaderContainer>
   );
 };
 
 Header.propTypes = {
   currentUser: PropTypes.oneOfType([PropTypes.object, PropTypes.oneOf([null])]),
+  showCart: PropTypes.bool,
 };
 
 const mapStateToProps = createStructuredSelector({

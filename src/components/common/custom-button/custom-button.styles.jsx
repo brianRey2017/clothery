@@ -1,4 +1,4 @@
-import { fontSize } from "@theme/Theme";
+import { pxToRem } from "@theme/Theme";
 import styled from "styled-components";
 
 const COLOR_VARIANTS = {
@@ -64,7 +64,7 @@ const getHoverBackgroundColorByVariant = (variant, { colors }) => {
 const getBorderByVariant = (variant, { colors }) => {
   switch (variant) {
     case COLOR_VARIANTS.INVERTED:
-      return `${fontSize(1)} solid ${colors.dark}`;
+      return `${pxToRem(1)} solid ${colors.dark}`;
 
     case COLOR_VARIANTS.DANGER:
     case COLOR_VARIANTS.PRIMARY:
@@ -80,7 +80,7 @@ const getHoverBorderByVariant = (variant, { colors }) => {
     case COLOR_VARIANTS.INVERTED:
       return "none";
     default:
-      return `${fontSize(1)} solid ${colors.dark}`;
+      return `${pxToRem(1)} solid ${colors.dark}`;
   }
 };
 
@@ -93,14 +93,14 @@ export const StyledButton = styled.button`
   cursor: pointer;
   display: flex;
   font-family: "Open Sans Condensed";
-  font-size: ${({ theme: { fontSizes } }) => fontSizes.medium};
+  font-size: ${pxToRem(16)};
   font-weight: bolder;
-  height: ${fontSize(50)};
+  height: ${pxToRem(50)};
   justify-content: center;
-  letter-spacing: ${fontSize(0.5)};
-  line-height: ${fontSize(50)};
-  min-width: ${fontSize(165)};
-  padding: 0 ${fontSize(35)} 0 ${fontSize(35)};
+  letter-spacing: ${pxToRem(0.5)};
+  line-height: ${pxToRem(50)};
+  min-width: ${pxToRem(165)};
+  padding: 0 ${pxToRem(35)} 0 ${pxToRem(35)};
   text-transform: uppercase;
   width: auto;
 
@@ -121,10 +121,10 @@ export const StyledTextWithIconContainer = styled.span`
 
 export const IconWrapper = styled.div`
   svg {
-    width: ${fontSize(18)};
-    height: ${fontSize(18)};
+    width: ${pxToRem(18)};
+    height: ${pxToRem(18)};
     fill: white;
-    margin-right: ${fontSize(10)};
+    margin-right: ${pxToRem(10)};
     margin-top: 1.1rem;
   }
 `;

@@ -2,8 +2,8 @@ import React from "react";
 import { ThemeProvider } from "styled-components";
 import { RED, GRAY, BLUE, WHITE, BLACK } from "./colors";
 
-const FONT_SIZE_BASE = 18;
-export const fontSize = (sizeInPx) => `${sizeInPx / FONT_SIZE_BASE}rem`;
+const FONT_SIZE_BASE = 16;
+export const pxToRem = (sizeInPx) => `${sizeInPx / FONT_SIZE_BASE}rem`;
 
 const theme = {
   colors: {
@@ -15,9 +15,9 @@ const theme = {
   },
   fonts: ["Open Sans Condensed", "sans-serif", "Roboto"],
   fontSizes: {
-    small: fontSize(12),
-    medium: fontSize(18),
-    large: fontSize(24),
+    small: pxToRem(12),
+    medium: pxToRem(18),
+    large: pxToRem(24),
   },
 };
 

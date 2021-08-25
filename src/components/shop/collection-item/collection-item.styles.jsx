@@ -7,6 +7,7 @@ export const CollectionItemContainer = styled.div`
   height: ${pxToRem(350)};
   width: 22vw;
   position: relative;
+  margin: ${pxToRem(15)} auto;
 
   .add-item-to-cart {
     width: 80%;

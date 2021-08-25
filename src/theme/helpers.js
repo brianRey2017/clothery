@@ -1,3 +1,5 @@
+import { pxToRem } from "./Theme";
+
 export const flex = ({
   alignItems = "center",
   direction = "column",
@@ -7,4 +9,9 @@ export const flex = ({
   flex-direction: ${direction};
   align-items: ${alignItems};
   justify-content: ${justifyContent};
+`;
+
+export const squaredSize = (size) => `
+  height: ${pxToRem(size)};
+  width: ${pxToRem(size)};
 `;

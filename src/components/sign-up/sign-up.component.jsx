@@ -6,7 +6,11 @@ import { withRouter } from "react-router-dom";
 import { auth, signInWithGoogle } from "@lib/firebase";
 import { useInput } from "@hooks/useInput";
 import UsersService from "@services/users";
-import "./sign-up.styles.scss";
+import {
+  ButtonsContainer,
+  SignUpContainer,
+  SignUpHeader,
+} from "./sign-up.styles";
 
 // eslint-disable-next-line react/prop-types
 const SignUp = ({ history }) => {
@@ -35,8 +39,8 @@ const SignUp = ({ history }) => {
   };
 
   return (
-    <div className="sign-up">
-      <h1>I do not have an account</h1>
+    <SignUpContainer>
+      <SignUpHeader>I do not have an account</SignUpHeader>
       <span>Sign up with your email and password</span>
 
       <form onSubmit={handleSubmit}>
@@ -72,14 +76,14 @@ const SignUp = ({ history }) => {
           type="password"
           value={passwordConfirm}
         />
-        <div className="buttons">
+        <ButtonsContainer>
           <CustomButton type="submit">Sign Up</CustomButton>
           <CustomButton onClick={signInWithGoogle} variant="primary">
             Sign up with Google
           </CustomButton>
-        </div>
+        </ButtonsContainer>
       </form>
-    </div>
+    </SignUpContainer>
   );
 };
 

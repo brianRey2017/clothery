@@ -3,10 +3,14 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 
 import { auth, signInWithGoogle } from "@lib/firebase";
+import {
+  ButtonsContainer,
+  SignInContainer,
+  SignInHeader,
+} from "./sign-in.styles";
 import CustomButton from "@components/common/custom-button/custom-button.component";
 import FormInput from "@components/common/form-input/form-input.component";
 import { useInput } from "@hooks/useInput";
-import "./sign-in.styles.scss";
 
 const SignIn = ({ history }) => {
   const [email, setEmail] = useInput("");
@@ -24,8 +28,8 @@ const SignIn = ({ history }) => {
   };
 
   return (
-    <div className="sign-in">
-      <h1>I already have an account</h1>
+    <SignInContainer>
+      <SignInHeader>I already have an account</SignInHeader>
       <span>Sign in with your email and password</span>
 
       <form onSubmit={handleSubmit}>
@@ -45,7 +49,7 @@ const SignIn = ({ history }) => {
           type="password"
           value={password}
         />
-        <div className="buttons">
+        <ButtonsContainer>
           <CustomButton type="submit">Sign In</CustomButton>
           <CustomButton
             onClick={signInWithGoogle}
@@ -54,9 +58,9 @@ const SignIn = ({ history }) => {
           >
             Sign in with Google
           </CustomButton>
-        </div>
+        </ButtonsContainer>
       </form>
-    </div>
+    </SignInContainer>
   );
 };
 

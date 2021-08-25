@@ -93,7 +93,7 @@ export const StyledButton = styled.button`
   cursor: pointer;
   display: flex;
   font-family: "Open Sans Condensed";
-  font-size: ${({ theme: { fontSizes } }) => fontSizes.medium};
+  font-size: ${pxToRem(16)};
   font-weight: bolder;
   height: ${pxToRem(50)};
   justify-content: center;

@@ -2,36 +2,39 @@ import { connect } from "react-redux";
 import React from "react";
 import PropTypes from "prop-types";
 
-import { ReactComponent as CloseIcon } from "@images/icons/cancel.svg";
+import {
+  CartItemContainer,
+  CartItemImage,
+  CartItemInfo,
+  CartItemPreviewContainer,
+  RemoveCartItemIcon,
+} from "./cart-item-preview.styles";
 import { removeItem } from "@redux/cart/cart.actions";
-
-import "./cart-item-preview.styles.scss";
 
 const CartItemPreview = ({ item, removeItemFromCart }) => {
   const { id, imageUrl, name, price, quantity } = item;
   return (
-    <div className="cart-item-preview">
-      <div className="item">
-        <img className="item-image" src={imageUrl} />
-        <span className="item-info">
+    <CartItemPreviewContainer>
+      <CartItemContainer>
+        <CartItemImage src={imageUrl} />
+        <CartItemInfo>
           {name}
           <br />
           {quantity > 1 ? ` X ${quantity}U:` : ""} ${price * quantity}
-        </span>
-      </div>
-      <CloseIcon
-        className="remove-item-icon"
+        </CartItemInfo>
+      </CartItemContainer>
+      <RemoveCartItemIcon
         onClick={() => {
           removeItemFromCart(id);
         }}
       />
-    </div>
+    </CartItemPreviewContainer>
   );
 };
 
 CartItemPreview.propTypes = {
   item: PropTypes.object.isRequired,
-  removeItem: PropTypes.func,
+  removeItemFromCart: PropTypes.func,
 };
 
 const mapDispatchToProps = (dispatch) => ({

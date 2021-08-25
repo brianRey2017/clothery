@@ -26,9 +26,9 @@ const Header = ({ showCart, currentUser }) => {
           CONTACT
         </Option>
         {currentUser ? (
-          <div className="option" onClick={() => auth.signOut()}>
+          <Option className="option" onClick={() => auth.signOut()}>
             SIGN OUT
-          </div>
+          </Option>
         ) : (
           <Option className="option" to="/signin">
             SIGN IN

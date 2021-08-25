@@ -1,46 +1,48 @@
 import { firestore } from "@lib/firebase";
 
 export class FirestoreCollection {
+  // TO DO: RESEARCH HOW CAN I EXTEND THIS FOR NESTED COLLECTIONS/PARAMS?
+  // TO DO: RESEARCH HOW CAN I "PROTECT" THESE METHODS
   constructor(collection) {
     this.collectionRef = firestore.collection(collection);
     Object.freeze(this);
   }
 
-  async getCollection() {
-    return this.collectionRef.get();
+  async __getCollection__() {
+    return this.collectionRef.__get__();
   }
 
-  async getDocument(documentId) {
-    return this.getDocumentRef(documentId);
+  async __getDocument__(documentId) {
+    return this.__getDocumentRef__(documentId);
   }
 
-  async updateDocument(documentId, payload) {
-    return this.getDocumentRef(documentId).update(payload);
+  async __updateDocument__(documentId, payload) {
+    return this.__getDocumentRef__(documentId).update(payload);
   }
 
-  async deleteDocument(documentId) {
-    return this.getDocumentRef(documentId).delete();
+  async __deleteDocument__(documentId) {
+    return this.__getDocumentRef__(documentId).delete();
   }
 
-  async createDocumentWithId(id, payload) {
-    return this.getDocumentRef(id).set(payload);
+  async __createDocumentWithId__(id, payload) {
+    return this.__getDocumentRef__(id).set(payload);
   }
 
-  async createDocument(payload) {
-    return this.getDocumentRef().set(payload);
+  async __createDocument__(payload) {
+    return this.__getDocumentRef__().set(payload);
   }
 
-  async documentExists(documentId) {
-    console.log(this.getDocumentRef(documentId));
-    console.log(this.getDocumentRef(documentId).exist);
-    return this.getDocumentRef(documentId).exists;
+  async __documentExists__(documentId) {
+    console.log(this.__getDocumentRef__(documentId));
+    console.log(this.__getDocumentRef__(documentId).exist);
+    return this.__getDocumentRef__(documentId).exists;
   }
 
-  getCollectionRef() {
+  __getCollectionRef__() {
     return this.collectionRef;
   }
 
-  getDocumentRef(documentId) {
-    return this.getCollectionRef().doc(documentId);
+  __getDocumentRef__(documentId) {
+    return this.__getCollectionRef__().doc(documentId);
   }
 }

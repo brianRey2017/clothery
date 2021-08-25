@@ -13,22 +13,22 @@ class UsersService extends FirestoreCollection {
   }
 
   async getUser(userId) {
-    return this.getDocument(userId);
+    return this.__getDocument__(userId);
   }
   async getUsers() {
-    return this.getDocuments();
+    return this.__getCollection__();
   }
 
   async createUser(userAuth, additionalData) {
     if (!userAuth) return;
 
     const { uid: userId } = userAuth;
-    const userRef = this.getDocumentRef(userId);
+    const userRef = this.__getDocumentRef__(userId);
 
     if (!(await this.userExists(userId))) {
       try {
         const payload = getUserDTO(userAuth, additionalData);
-        await this.createDocumentWithId(userId, payload);
+        await this.__createDocumentWithId__(userId, payload);
         return userRef;
       } catch (error) {
         console.error("Error while creating user", error);
@@ -37,7 +37,7 @@ class UsersService extends FirestoreCollection {
   }
 
   async userExists(userId) {
-    return this.documentExists(userId);
+    return this.__documentExists__(userId);
   }
 }
 

@@ -13,9 +13,12 @@ import { CollectionSchema } from "./collection.schema";
 import { selectShopCollection } from "@redux/shop/shop.selectors";
 
 const Collection = ({ collection: { title, items } }) => {
+  const toTitleCase = (phrase) =>
+    phrase.charAt(0).toUpperCase() + phrase.slice(1);
+
   return (
     <CollectionContainer>
-      <CollectionTitle>{title}</CollectionTitle>
+      <CollectionTitle>{toTitleCase(title)}</CollectionTitle>
       <CollectionItemsContainer>
         {items.map((item) => (
           <CollectionItem

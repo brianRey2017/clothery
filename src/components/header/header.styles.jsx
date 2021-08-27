@@ -4,11 +4,15 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const HeaderContainer = styled.div`
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
   height: ${pxToRem(70)};
   width: 100%;
   display: flex;
   justify-content: space-between;
   margin-bottom: ${pxToRem(25)};
+  background-color: ${({ theme: { colors } }) => colors.main};
 `;
 
 export const OptionsContainer = styled.div`
@@ -18,6 +22,11 @@ export const OptionsContainer = styled.div`
 `;
 
 export const Option = styled(Link)`
+  padding: ${pxToRem(10)} ${pxToRem(15)};
+  cursor: pointer;
+`;
+
+export const OptionWithoutLink = styled.span`
   padding: ${pxToRem(10)} ${pxToRem(15)};
   cursor: pointer;
 `;

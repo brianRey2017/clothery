@@ -1,13 +1,50 @@
-import { firestore } from "@lib/firebase";
+import { FirestoreCollection } from "./lib/firestore-collection";
+import CollectionItemsService from "./collection-item";
 
-const COLLECTION_REF = firestore.collection("collections");
+const getCollectionDAO = async ({ title, items = [], id, name }) => ({
+  title,
+  items,
+  id,
+  routeName: encodeURI(name),
+});
 
-const getCollection = async (collectionId) =>
-  COLLECTION_REF.doc(collectionId).get();
+class CollectionsService extends FirestoreCollection {
+  constructor() {
+    super("collections");
+  }
 
-const getCollections = async () => COLLECTION_REF.get();
+  async getCollection(collectionId) {
+    return this.__getDocument__(collectionId);
+  }
 
-export default {
-  getCollection,
-  getCollections,
-};
+  async getCollections() {
+    const collections = await this.__getCollection__({
+      extract: true,
+    });
+
+    const collectionsWithItems = await Promise.all(
+      collections.map(
+        async (collection) => await this._mapCollectionWithItems(collection)
+      )
+    );
+
+    return collectionsWithItems.reduce(
+      (collectionsMap, item) => ({
+        ...collectionsMap,
+        [item.routeName]: item,
+      }),
+      {}
+    );
+  }
+
+  async _mapCollectionWithItems(collection) {
+    const collectionItems =
+      await CollectionItemsService.getCollectionItemsForSpecificCollection(
+        collection.id
+      );
+
+    return getCollectionDAO({ ...collection, items: collectionItems });
+  }
+}
+
+export default new CollectionsService();

@@ -7,7 +7,12 @@ import { createStructuredSelector } from "reselect";
 import { auth } from "@lib/firebase";
 import CartDropdown from "@components/cart/cart-dropdown/cart-dropdown.component";
 import CartIcon from "@components/cart/cart-icon/cart-icon.component";
-import { HeaderContainer, Option, OptionsContainer } from "./header.styles";
+import {
+  HeaderContainer,
+  Option,
+  OptionsContainer,
+  OptionWithoutLink,
+} from "./header.styles";
 import { ReactComponent as LogoIcon } from "@images/crown.svg";
 import { selectCartVisibility } from "@redux/cart/cart.selectors";
 import { selectCurrentUser } from "@redux/user/user.selectors";
@@ -19,20 +24,14 @@ const Header = ({ showCart, currentUser }) => {
         <LogoIcon />
       </Link>
       <OptionsContainer>
-        <Option className="option" to="/shop">
-          SHOP
-        </Option>
-        <Option className="option" to="">
-          CONTACT
-        </Option>
+        <Option to="/shop">SHOP</Option>
+        <Option to="">CONTACT</Option>
         {currentUser ? (
-          <div className="option" onClick={() => auth.signOut()}>
+          <OptionWithoutLink onClick={() => auth.signOut()}>
             SIGN OUT
-          </div>
+          </OptionWithoutLink>
         ) : (
-          <Option className="option" to="/signin">
-            SIGN IN
-          </Option>
+          <Option to="/signin">SIGN IN</Option>
         )}
         <CartIcon />
       </OptionsContainer>

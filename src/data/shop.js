@@ -152,10 +152,10 @@ export const SHOP_DATA = {
       },
     ],
   },
-  womens: {
+  women: {
     id: "aae8bc95-f0e5-4622-884b-72cdaf8ae90e",
-    title: "Womens",
-    routeName: "womens",
+    title: "women",
+    routeName: "women",
     items: [
       {
         id: "b1309b50-a9dd-400d-a5a0-a7773d60e115",
@@ -201,10 +201,10 @@ export const SHOP_DATA = {
       },
     ],
   },
-  mens: {
+  men: {
     id: "7f55775c-dd3f-4d02-84fb-2bae12cd0c17",
-    title: "Mens",
-    routeName: "mens",
+    title: "men",
+    routeName: "men",
     items: [
       {
         id: "6b7827ba-6857-46f7-963a-e799d58ee477",

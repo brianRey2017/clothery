@@ -21,3 +21,8 @@ export const Option = styled(Link)`
   padding: ${pxToRem(10)} ${pxToRem(15)};
   cursor: pointer;
 `;
+
+export const OptionWithoutLink = styled.span`
+  padding: ${pxToRem(10)} ${pxToRem(15)};
+  cursor: pointer;
+`;

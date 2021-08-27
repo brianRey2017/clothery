@@ -1,13 +1,25 @@
-import { firestore } from "@lib/firebase";
+import { FirestoreCollection } from "./lib/firestore-collection";
+class CollectionItemsService extends FirestoreCollection {
+  constructor() {
+    super("collection-items");
+  }
 
-const COLLECTION_REF = firestore.collection("collection-items");
+  async getCollectionItem(collectionItemId) {
+    return this.__getDocument__(collectionItemId);
+  }
 
-const getCollectionItem = async (collectionItemId) =>
-  COLLECTION_REF.doc(collectionItemId).get();
+  async getCollectionItems() {
+    const collections = await this.__getCollection__({ extract: true });
+    return collections;
+  }
 
-const getCollectionItems = async () => COLLECTION_REF.get();
+  async getCollectionItemsForSpecificCollection(collectionId) {
+    const collections = await this.__queryCollection__(
+      ["collectionId", "==", collectionId],
+      { extract: true }
+    );
+    return collections;
+  }
+}
 
-export default {
-  getCollectionItem,
-  getCollectionItems,
-};
+export default new CollectionItemsService();

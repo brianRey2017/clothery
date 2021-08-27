@@ -4,11 +4,15 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const HeaderContainer = styled.div`
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
   height: ${pxToRem(70)};
   width: 100%;
   display: flex;
   justify-content: space-between;
   margin-bottom: ${pxToRem(25)};
+  background-color: ${({ theme: { colors } }) => colors.main};
 `;
 
 export const OptionsContainer = styled.div`

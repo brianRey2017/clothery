@@ -1,5 +1,17 @@
 import { firestore } from "@lib/firebase";
 
+const transformData = (data, callback) => {
+  if (callback) {
+    return data.map((item) => callback(item));
+  }
+  return data;
+};
+
+const extractDataFromQuery = async (items, transformFunction) => {
+  const extractedData = items.docs.map((item) => item.data());
+  return transformData(extractedData, transformFunction);
+};
+
 export class FirestoreCollection {
   // TO DO: RESEARCH HOW CAN I EXTEND THIS FOR NESTED COLLECTIONS/PARAMS?
   // TO DO: RESEARCH HOW CAN I "PROTECT" THESE METHODS
@@ -8,12 +20,31 @@ export class FirestoreCollection {
     Object.freeze(this);
   }
 
-  async __getCollection__() {
-    return this.collectionRef.__get__();
+  async __getCollection__({ extract = false, transformFunction }) {
+    const items = await this.__getCollectionRef__().get();
+    if (extract) {
+      return extractDataFromQuery(items, transformFunction);
+    }
+    return items;
+  }
+
+  async __queryCollection__(
+    query = [],
+    { extract } = { extract: false },
+    transformFunction
+  ) {
+    const items = await this.__getCollectionRef__()
+      .where(...query)
+      .get();
+
+    if (extract) {
+      return extractDataFromQuery(items, transformFunction);
+    }
+    return items;
   }
 
   async __getDocument__(documentId) {
-    return this.__getDocumentRef__(documentId);
+    return this.__getDocumentRef__(documentId).get();
   }
 
   async __updateDocument__(documentId, payload) {
@@ -33,8 +64,6 @@ export class FirestoreCollection {
   }
 
   async __documentExists__(documentId) {
-    console.log(this.__getDocumentRef__(documentId));
-    console.log(this.__getDocumentRef__(documentId).exist);
     return this.__getDocumentRef__(documentId).exists;
   }
 

@@ -20,7 +20,11 @@ const Directory = ({ sections, updateSections }) => {
           key={id}
           id={id}
           {...sectionProps}
+<<<<<<< HEAD
           linkUrl={encodeURI(`shop/${sectionProps.title}`)}
+=======
+          linkUrl={encodeURI(`shop/${sectionProps.name}`)}
+>>>>>>> data-migration-to-redux
         />
       ))}
     </DirectoryContainer>

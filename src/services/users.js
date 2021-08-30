@@ -29,11 +29,11 @@ class UsersService extends FirestoreCollection {
       try {
         const payload = getUserDTO(userAuth, additionalData);
         await this.__createDocumentWithId__(userId, payload);
-        return userRef;
       } catch (error) {
         console.error("Error while creating user", error);
       }
     }
+    return userRef;
   }
 
   async userExists(userId) {

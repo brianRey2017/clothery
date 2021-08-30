@@ -13,7 +13,9 @@ const Shop = ({ updateCollections }) => {
   useEffect(async () => {
     // check how to add onSnapShot FUNCTIONALITY
     // LESSON: BEFORE DESIGNING A LIB THINK ALL THE USE CASES AND IF IT WILL BE READABLE
-    const collections = await CollectionsService.getCollections();
+    const collections = await CollectionsService.getCollections({
+      getItems: true,
+    });
     updateCollections(collections);
   }, [unsubscribeFromSnapshot]);
   return (

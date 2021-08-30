@@ -15,14 +15,11 @@ export const MenuItemContainer = styled.div`
 
   &.large {
     height: ${pxToRem(380)};
+    flex-basis: 45%;
   }
 
-  &:first-child {
-    margin-right: 7.5 ${pxToRem()};
-  }
-
-  &:last-child {
-    margin-left: 7.5 ${pxToRem()};
+  &:not(.large) {
+    margin: auto ${pxToRem(7)};
   }
 
   &:hover {

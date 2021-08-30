@@ -10,7 +10,7 @@ import {
   MenuItemTitle,
 } from "./menu-item.styles";
 
-const MenuItem = ({ imageUrl, linkUrl, title, size }) => {
+const MenuItem = ({ imagePreviewURL, linkUrl, title, large }) => {
   const history = useHistory();
 
   const handleClick = () => {
@@ -19,12 +19,12 @@ const MenuItem = ({ imageUrl, linkUrl, title, size }) => {
 
   return (
     <MenuItemContainer
-      className={`menu-item ${size}`}
+      className={`${large ? "large" : ""}`}
       onClick={() => handleClick()}
     >
       <ImageContainer
         style={{
-          backgroundImage: `url(${imageUrl})`,
+          backgroundImage: `url(${imagePreviewURL})`,
         }}
       />
       <MenuItemContent>
@@ -37,8 +37,9 @@ const MenuItem = ({ imageUrl, linkUrl, title, size }) => {
 
 MenuItem.propTypes = {
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  imageUrl: PropTypes.string.isRequired,
-  size: PropTypes.oneOf(["small", "large"]),
+  imagePreviewURL: PropTypes.string.isRequired,
+  linkUrl: PropTypes.string.isRequired,
+  large: PropTypes.bool,
   title: PropTypes.string.isRequired,
 };
 

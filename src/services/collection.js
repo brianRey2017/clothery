@@ -37,6 +37,18 @@ class CollectionsService extends FirestoreCollection {
     );
   }
 
+  async getFeaturedCollections() {
+    // TO DO: check how to apply the library here
+    const dataRef = await this.__getCollectionRef__()
+      .where("featured", "==", true)
+      .orderBy("large")
+      .get();
+
+    const extractedData = dataRef.docs.map((item) => item.data());
+
+    return extractedData;
+  }
+
   async _mapCollectionWithItems(collection) {
     const collectionItems =
       await CollectionItemsService.getCollectionItemsForSpecificCollection(

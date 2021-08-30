@@ -1,7 +1,6 @@
 import { SHOP_ACTION_TYPES } from "./shop.types";
-import { SHOP_DATA } from "@data/shop";
 
-const INITIAL_STATE = { collections: SHOP_DATA };
+const INITIAL_STATE = { collections: [] };
 
 export default (state = INITIAL_STATE, { type, payload }) => {
   switch (type) {

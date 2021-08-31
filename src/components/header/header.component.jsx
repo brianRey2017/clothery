@@ -25,7 +25,7 @@ const Header = ({ showCart, currentUser }) => {
       </Link>
       <OptionsContainer>
         <Option to="/shop">SHOP</Option>
-        <Option to="">CONTACT</Option>
+        {/* <Option to="">CONTACT</Option> */}
         {currentUser ? (
           <OptionWithoutLink onClick={() => auth.signOut()}>
             SIGN OUT

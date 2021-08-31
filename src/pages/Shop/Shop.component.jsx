@@ -6,11 +6,14 @@ import PropTypes from "prop-types";
 
 import CollectionsOverview from "@components/shop/collections-overview/collections-overview.component";
 import Collection from "@components/shop/collection/collection.component";
-import { fetchCollectionsStartAsync } from "@redux/shop/shop.actions";
-import { selectIsCollectionFetching } from "@redux/shop/shop.selectors";
+import { triggerFetchCollectionsAsync } from "@redux/shop/shop.actions";
+import {
+  selectIsCollectionFetching,
+  selectIsCollectionLoaded,
+} from "@redux/shop/shop.selectors";
 import WithSpinner from "@components/common/with-spinner/with-spinner.component";
 
-const Shop = ({ fetchCollections, loading }) => {
+const Shop = ({ fetchCollections, isCollectionsLoaded, loading }) => {
   const match = useRouteMatch();
 
   useEffect(() => fetchCollections(), []);
@@ -30,7 +33,7 @@ const Shop = ({ fetchCollections, loading }) => {
       />
       <Route
         render={(props) => (
-          <CollectionWithSpinner isLoading={loading} {...props} />
+          <CollectionWithSpinner isLoading={!isCollectionsLoaded} {...props} />
         )}
         exact
         path={`${match.path}/:categoryId`}
@@ -40,17 +43,19 @@ const Shop = ({ fetchCollections, loading }) => {
 };
 
 Shop.propTypes = {
+  isCollectionsLoaded: PropTypes.bool,
   loading: PropTypes.bool,
   fetchCollections: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   loading: selectIsCollectionFetching,
+  isCollectionsLoaded: selectIsCollectionLoaded,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   fetchCollections: (collections) =>
-    dispatch(fetchCollectionsStartAsync(collections)),
+    dispatch(triggerFetchCollectionsAsync(collections)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Shop);

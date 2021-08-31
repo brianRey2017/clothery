@@ -1,30 +1,30 @@
 import { SHOP_ACTION_TYPES } from "./shop.types";
 import CollectionsService from "@services/collection";
 
-const fetchCollectionsStart = () => ({
+const triggerFetchCollectionsStart = () => ({
   type: SHOP_ACTION_TYPES.FETCH_COLLECTIONS_START,
 });
 
-const fetchCollectionsSuccess = (collections) => ({
+const triggerFetchCollectionsSuccess = (collections) => ({
   payload: collections,
   type: SHOP_ACTION_TYPES.FETCH_COLLECTIONS_SUCCESS,
 });
 
-const fetchCollectionsFailure = (errorMessage) => ({
+const triggerFetchCollectionsFailure = (errorMessage) => ({
   payload: errorMessage,
   type: SHOP_ACTION_TYPES.FETCH_COLLECTIONS_SUCCESS,
 });
 
-export const fetchCollectionsStartAsync = () => {
+export const triggerFetchCollectionsAsync = () => {
   return async (dispatch) => {
-    dispatch(fetchCollectionsStart());
+    dispatch(triggerFetchCollectionsStart());
     try {
       const collections = await CollectionsService.getCollections({
         getItems: true,
       });
-      dispatch(fetchCollectionsSuccess(collections));
+      dispatch(triggerFetchCollectionsSuccess(collections));
     } catch (error) {
-      dispatch(fetchCollectionsFailure(error));
+      dispatch(triggerFetchCollectionsFailure(error));
     }
   };
 };

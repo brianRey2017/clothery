@@ -1,6 +1,10 @@
 import { SHOP_ACTION_TYPES } from "./shop.types";
 
-const INITIAL_STATE = { collections: [], isFetching: false, errorMessage: "" };
+const INITIAL_STATE = {
+  collections: null,
+  isFetching: false,
+  errorMessage: "",
+};
 
 export default (state = INITIAL_STATE, { type, payload }) => {
   switch (type) {
